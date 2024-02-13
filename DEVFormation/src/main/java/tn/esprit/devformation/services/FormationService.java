@@ -5,6 +5,7 @@ import tn.esprit.devformation.utils.MyDataBase;
 
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
 public class FormationService implements Iservice<Formation> {
@@ -46,7 +47,7 @@ public class FormationService implements Iservice<Formation> {
             st.executeUpdate();
             System.out.println("Successfully updated!");
         } catch (SQLException e) {
-            System.err.println("An error occurred while adding the formation: " + e.getMessage());
+            System.err.println("An error occurred while updating the formation: " + e.getMessage());
         }
     }
 
@@ -58,7 +59,7 @@ public class FormationService implements Iservice<Formation> {
             st.executeUpdate();
             System.out.println("Successfully deleted!");
         } catch (SQLException e) {
-            System.err.println("An error occurred while adding the formation: " + e.getMessage());
+            System.err.println("An error occurred while deleting the formation: " + e.getMessage());
         }
     }
 
@@ -78,9 +79,18 @@ public class FormationService implements Iservice<Formation> {
                 System.out.println(f);
             }
         } catch (SQLException e) {
-            System.err.println("An error occurred while adding the formation: " + e.getMessage());
+            System.err.println("An error occurred while listing the formation: " + e.getMessage());
         }
 
         return L;
+    }
+    public void sortByPrice(List<Formation> formations){}
+    //SortByType
+    public void sortByCategorie(List<Formation> formations) {
+        formations.sort(Comparator.comparing(Formation::getTypeF));
+        System.out.println("Sorted Formations:");
+        for (Formation formation : formations) {
+            System.out.println(formation);
+        }
     }
 }
