@@ -14,47 +14,61 @@ import java.util.ArrayList;
 public class Main {
     public static void main(String[] args){
         MyDataBase db = MyDataBase.getInstance();
-        Iservice I1 = new FormationService();
-        Iservice I2 = new CoursService();
-        /*Formation f=new Formation("GL");
-        Iservice I = new FormationService();
-        I.add(f);
+
+
+        FormationService I1 = new FormationService();
+        CoursService I2 = new CoursService();
+        ChapitreService I = new ChapitreService();
+        //Formations
+
+        //ADD FORMATION
+        Formation f=new Formation("GL");
+        I1.add(f);
         Formation f1 = new Formation("ALGO");
         Formation f2 = new Formation("GL");
-        Iservice I1 = new FormationService();
+        //UPDATE FORMATION
         I1.update(f2);
-        Iservice I = new FormationService();
-        I.delete(3);
-        Iservice I = new FormationService();
+        //DELETE FORMATION
+        I1.delete(3);
+        //DISPLAY
         ArrayList<Formation> l =new ArrayList<>();
-        l= (ArrayList<Formation>) I.getAll();
-        Formation f=new Formation("Devops");
-        Iservice I = new FormationService();
-        I.add(f);
-        Cours c=new Cours(1,"lecon4","Duree : 5 semaines , HTML","Devops",500);
-        I1.delete(5);
-       ArrayList<Formation> l =new ArrayList<>();
         l= (ArrayList<Formation>) I1.getAll();
-        I1.sort(l);
+        //SORT
+        I1.sortByCategorie(l);
+
+        //COURSES
+        Cours c=new Cours(1,"lecon4","Duree : 5 semaines , HTML","Devops",500);
         Cours c1=new Cours(1,"lecon3","Duree : 20 semaines , CSS ","Devops",1000);
-        I1.add(c1);
+        //ADD
+        I2.add(c1);
+        //DISPLAY + SORT
         ArrayList<Cours> c =new ArrayList<>();
         c= (ArrayList<Cours>) I2.getAll();
         I2.sortByCategorie(c);
+
+
+
+        //Chapters
         Chapitre ch1 = new Chapitre(1,"Introduction","cours de 16 hrs : DEVOPS") ;
         Chapitre ch2 = new Chapitre(3,"Introduction","cours de 10 hrs : PYTHON") ;
         Chapitre ch3 = new Chapitre(1,"Chap1","cours de 10 : DEVOPS") ;
-
+        //ADD
         I.add(ch1);
         I.add(ch2);
         I.add(ch3);
-        ChapitreService I = new ChapitreService();
-        ArrayList<Chapitre> c =new ArrayList<>();
-        c= (ArrayList<Chapitre>) I.getAll();
-        I.sortByCategorie(c);*/
+        //DISPLAY + SORT
+        ArrayList<Chapitre> ch =new ArrayList<>();
+        ch= (ArrayList<Chapitre>) I.getAll();
+        I.sortByCategorie(ch);
+
+
+
+
+
+        //TEST SEARCH (formation + cours )
         ArrayList<Formation> L =new ArrayList<>();
-        FormationService f = new FormationService();
-        L = f.search("PYTHON");
+        FormationService fs = new FormationService();
+        L = fs.search("PYTHON");
         ArrayList<Cours> C =new ArrayList<>();
         CoursService d = new CoursService();
         C = d.search("DEVOPS");
