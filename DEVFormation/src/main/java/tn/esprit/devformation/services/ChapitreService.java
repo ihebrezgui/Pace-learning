@@ -1,5 +1,6 @@
 package tn.esprit.devformation.services;
 import tn.esprit.devformation.models.Cours;
+import tn.esprit.devformation.models.Formation;
 import tn.esprit.devformation.utils.MyDataBase;
 import tn.esprit.devformation.models.Chapitre;
 import java.sql.Connection;
@@ -85,5 +86,8 @@ public class ChapitreService implements Iservice<Chapitre> {
     @Override
     public void sortByPrice(List<Chapitre> list) {
 
+    }
+    public ArrayList<Chapitre> search(String searchTerm){
+        return null;
     }
 }

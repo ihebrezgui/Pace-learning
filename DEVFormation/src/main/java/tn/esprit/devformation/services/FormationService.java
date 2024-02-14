@@ -93,4 +93,27 @@ public class FormationService implements Iservice<Formation> {
             System.out.println(formation);
         }
     }
+    //seqrch per type
+    public ArrayList<Formation> search(String searchTerm) {
+        ArrayList<Formation> searchResults = new ArrayList<>();
+        String req = "SELECT * FROM `formation` WHERE `typeF` = '" + searchTerm + "'";
+        try {
+            PreparedStatement st = connection.prepareStatement(req);
+            ResultSet res = st.executeQuery();
+            while (res.next()) {
+                Formation formation = new Formation();
+                formation.setIdFormation(res.getInt("idFormation"));
+                formation.setTypeF(res.getString("typeF"));
+                searchResults.add(formation);
+                System.out.println(formation);
+            }
+        } catch (SQLException e) {
+            System.err.println("An error occurred while searching for the formation: " + e.getMessage());
+        }
+        if (searchResults.isEmpty()) {
+            System.out.println("No formation found for the search term: " + searchTerm);
+        }
+        return searchResults;
+    }
+
 }

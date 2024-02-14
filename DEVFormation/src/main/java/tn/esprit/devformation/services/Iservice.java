@@ -2,6 +2,7 @@ package tn.esprit.devformation.services;
 
 import tn.esprit.devformation.models.Formation;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public interface Iservice <T>{
@@ -11,4 +12,5 @@ public interface Iservice <T>{
     List<T> getAll();
     void sortByCategorie(List<T> list);
     void sortByPrice(List<T> list);
+    public ArrayList<T> search(String searchTerm);
 }

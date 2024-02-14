@@ -47,10 +47,17 @@ public class Main {
 
         I.add(ch1);
         I.add(ch2);
-        I.add(ch3);*/
+        I.add(ch3);
         ChapitreService I = new ChapitreService();
         ArrayList<Chapitre> c =new ArrayList<>();
         c= (ArrayList<Chapitre>) I.getAll();
-        I.sortByCategorie(c);
+        I.sortByCategorie(c);*/
+        ArrayList<Formation> L =new ArrayList<>();
+        FormationService f = new FormationService();
+        L = f.search("PYTHON");
+        ArrayList<Cours> C =new ArrayList<>();
+        CoursService d = new CoursService();
+        C = d.search("DEVOPS");
+
     }
 }
