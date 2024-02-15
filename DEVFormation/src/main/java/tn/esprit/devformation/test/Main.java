@@ -42,9 +42,9 @@ public class Main {
         //ADD
         I2.add(c1);
         //DISPLAY + SORT
-        ArrayList<Cours> c =new ArrayList<>();
-        c= (ArrayList<Cours>) I2.getAll();
-        I2.sortByCategorie(c);
+        ArrayList<Cours> cl =new ArrayList<>();
+        cl= (ArrayList<Cours>) I2.getAll();
+        I2.sortByCategorie(cl);
 
 
 
@@ -72,6 +72,10 @@ public class Main {
         ArrayList<Cours> C =new ArrayList<>();
         CoursService d = new CoursService();
         C = d.search("DEVOPS");
+
+        //Test Delete CASCADE
+        I1.delete(1);
+        I2.getAll();
 
     }
 }
