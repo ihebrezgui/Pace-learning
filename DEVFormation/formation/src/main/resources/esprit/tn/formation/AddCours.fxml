@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #edf5fc;" xmlns="http://javafx.com/javafx/17.0.6" xmlns:fx="http://javafx.com/fxml/1" fx:controller="esprit.tn.formation.controllers.AddCours">
+    <ImageView fitHeight="100.0" fitWidth="100.0" layoutX="26.0" layoutY="6.0">
+        <image>
+            <Image url="@../../../PaceLearning/LOGO.png" />
+        </image>
+    </ImageView>
+    <Label layoutX="151.0" layoutY="33.0" prefHeight="18.0" prefWidth="345.0" style="-fx-text-fill: #003366;" text="Ajouter Cours">
+        <font>
+            <Font size="30.0" />
+        </font>
+    </Label>
+    <TextField fx:id="tabI" layoutX="66.0" layoutY="145.0" promptText="IdCours" style="-fx-background-color: #FFFFFF; -fx-border-color: #B0C4DE; -fx-border-width: 2px; -fx-border-radius: 5px;" />
+    <TextField fx:id="tabF" layoutX="66.0" layoutY="181.0" promptText="IdFormation" style="-fx-background-color: #FFFFFF; -fx-border-color: #B0C4DE; -fx-border-width: 2px; -fx-border-radius: 5px;" />
+    <TextField fx:id="tabN" layoutX="66.0" layoutY="217.0" promptText="Nom Cours" style="-fx-background-color: #FFFFFF; -fx-border-color: #B0C4DE; -fx-border-width: 2px; -fx-border-radius: 5px;" />
+    <TextField fx:id="tabD" layoutX="66.0" layoutY="253.0" promptText="Description" style="-fx-background-color: #FFFFFF; -fx-border-color: #B0C4DE; -fx-border-width: 2px; -fx-border-radius: 5px;" />
+    <TextField fx:id="tabC" layoutX="66.0" layoutY="289.0" promptText="Catégorie" style="-fx-background-color: #FFFFFF; -fx-border-color: #B0C4DE; -fx-border-width: 2px; -fx-border-radius: 5px;" />
+    <TextField fx:id="tabP" layoutX="66.0" layoutY="325.0" promptText="Prix" style="-fx-background-color: #FFFFFF; -fx-border-color: #B0C4DE; -fx-border-width: 2px; -fx-border-radius: 5px;" />
+    <Button layoutX="241.0" layoutY="335.0" mnemonicParsing="false" onAction="#add" style="-fx-background-color: #66a3ff; -fx-text-fill: white; -fx-font-size: 15px; -fx-background-radius: 5px;" text="Ajouter" />
+    <Button layoutX="318.0" layoutY="335.0" mnemonicParsing="false" onAction="#getAll" style="-fx-background-color: #66a3ff; -fx-text-fill: white; -fx-font-size: 15px; -fx-background-radius: 5px;" text="Afficher" />
+    <ImageView fitHeight="200.0" fitWidth="200.0" layoutX="262.0" layoutY="96.0">
+        <image>
+            <Image url="@../../../PaceLearning/Duplicate-amico.png" />
+        </image>
+    </ImageView>
+</AnchorPane>
