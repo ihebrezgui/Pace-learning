@@ -1,7 +1,9 @@
 package test;
 
 import entities.enseignant;
+import entities.partnerships;
 import services.ServiceEnseignant;
+import services.ServicePartnerships;
 
 import java.sql.SQLException;
 
@@ -30,13 +32,30 @@ public class main {
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }*/
-        try {
+        /*try {
             enseignant p3 =new enseignant(1,21,"zizou@gmail.com","prog","aziz","chaabi","jawi bhi","english");
 
             services.supprimer(p3);
         } catch (SQLException e) {
             System.out.println(e.getMessage());
+        }*/
+        /*try {
+            System.out.println(services.afficher());
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
         }
+        partnerships pp=new partnerships("aziz","info",3);*/
+        ServicePartnerships service = new ServicePartnerships();/*
+        try {
+            service.ajouter(pp);
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());}*/
+        try {
+            partnerships pp=new partnerships(1,"aziz","info",5);
+            service.modifier(pp);
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());}
+
 
     }
 

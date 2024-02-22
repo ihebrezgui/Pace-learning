@@ -6,18 +6,21 @@ public class partnerships {
   int idP,choix;
   String nom_p,domaine;
 
-    public partnerships(int idP, int choix, String nom_p, String domaine) {
+    public partnerships(int idP, String nom_p, String domaine,int choix) {
         this.idP = idP;
-        this.choix = choix;
-        this.nom
-    _p = nom_p;
-        this.domaine = domaine;
-    }
-
-    public partnerships(int choix, String nom_p, String domaine) {
         this.choix = choix;
         this.nom_p = nom_p;
         this.domaine = domaine;
+    }
+
+    public partnerships( String nom_p, String domaine ,int choix) {
+        this.choix = choix;
+        this.nom_p = nom_p;
+        this.domaine = domaine;
+    }
+
+    public partnerships() {
+
     }
 
     public int getIdP() {

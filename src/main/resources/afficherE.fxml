@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.AfficherE">
+   <children>
+      <AnchorPane layoutX="10.0" layoutY="10.0" prefHeight="635.0" prefWidth="944.0">
+         <children>
+            <ListView id="formationListView" fx:id="EnseignantListView" layoutX="342.0" layoutY="14.0" prefHeight="278.0" prefWidth="602.0" stylesheets="@../../../../../../Downloads/study_land%20(5)/study_land/src/main/resources/styles.css" />
+            <Button layoutX="549.0" layoutY="406.0" mnemonicParsing="false" onAction="#AfficherDB" prefHeight="26.0" prefWidth="94.0" text="AfficherDB">
+               <stylesheets>
+                  <URL value="@../../../../../Downloads/study_land%20(5)/study_land/src/main/resources/styles.css" />
+                  <URL value="@styles.css" />
+               </stylesheets>
+            </Button>
+            <Button layoutX="433.0" layoutY="406.0" mnemonicParsing="false" onAction="#deleteE" prefHeight="26.0" prefWidth="94.0" text="Supprimer">
+               <stylesheets>
+                  <URL value="@../../../../../Downloads/study_land%20(5)/study_land/src/main/resources/styles.css" />
+                  <URL value="@styles.css" />
+               </stylesheets>
+            </Button>
+            <Button fx:id="modifierEN" layoutX="671.0" layoutY="406.0" mnemonicParsing="false" onAction="#modifierE" prefHeight="21.0" prefWidth="94.0" text="Modifier">
+               <stylesheets>
+                  <URL value="@../../../../../Downloads/study_land%20(5)/study_land/src/main/resources/styles.css" />
+                  <URL value="@styles.css" />
+               </stylesheets>
+            </Button>
+            <ImageView fitHeight="616.0" fitWidth="324.0" layoutY="6.0" pickOnBounds="true">
+               <image>
+                  <Image url="@../../pngtree-teacher-with-student-png-image_6877693.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="70.0" fitWidth="68.0" layoutX="10.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../123456.png" />
+               </image>
+            </ImageView>
+            <Label fx:id="next" layoutX="431.0" layoutY="497.0" stylesheets="@../../../../../../Downloads/study_land%20(5)/study_land/src/main/resources/styles.css" text=" " />
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>
