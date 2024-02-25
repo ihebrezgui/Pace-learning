@@ -73,7 +73,7 @@ public class PanierService implements InterfaceService<Panier> {
     }
 
     @Override
-    public List<Panier> tri_par_nom() throws SQLException {
+    public List<Panier> tri_par_nom_asc() throws SQLException {
         List<Panier> paniers = new ArrayList<>();
         String req = "SELECT * FROM panier ORDER BY nom ASC";
         Statement st = cnx.createStatement();
@@ -115,7 +115,7 @@ public class PanierService implements InterfaceService<Panier> {
 
 
     @Override
-    public List<Panier> tri_par_nom2() throws SQLException {
+    public List<Panier> tri_par_nom_desc() throws SQLException {
         List<Panier> paniers = new ArrayList<>();
         String req = "SELECT * FROM panier ORDER BY nom DESC";
         Statement st = cnx.createStatement();
@@ -126,7 +126,7 @@ public class PanierService implements InterfaceService<Panier> {
             panier.setQuantite(rs.getInt("quantite"));
             panier.setNom(rs.getString("nom"));
             panier.setPrix(rs.getInt("prix"));
-           panier.setProd_id(rs.getString("prod_id"));
+            panier.setProd_id(rs.getString("prod_id"));
             paniers.add(panier);
         }
         rs.close();

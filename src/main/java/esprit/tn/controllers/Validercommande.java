@@ -85,55 +85,51 @@ public class Validercommande {
 
     @FXML
     void ajouter(ActionEvent event) {
-        CommandeService commandeService = new CommandeService();
-        Commande commande = new Commande();
-        commande.setNom(nomField.getText());
-        commande.setPrenom(prenomField.getText());
-        commande.setAddress(adresseField.getText());
-        commande.setTel(Integer.parseInt(telField.getText()));
-        commande.setMail(emailField.getText());
-
-        // Vérification si telField contient une valeur numérique
+        // Récupérer les valeurs des champs
+        String nom = nomField.getText();
+        String prenom = prenomField.getText();
+        String adresse = adresseField.getText();
         String telText = telField.getText();
-        if (!telText.matches("\\d+")) { // Vérifie si la chaîne contient uniquement des chiffres
-            afficherErreur("Le numéro de téléphone doit être un nombre.");
-            return; // Arrêter la méthode si le numéro de téléphone n'est pas un nombre
-        }
-
-        // Vérification de l'adresse email
         String email = emailField.getText();
-        if (!isValidEmail(email)) {
-            afficherErreur("Adresse e-mail invalide.");
-            return; // Arrêter la méthode si l'adresse e-mail est invalide
-        }
 
-        // Vérification des autres champs
-        if (nomField.getText().isEmpty()) {
-            afficherErreur("Veuillez saisir votre nom.");
-            return;
-        }
-
-        if (prenomField.getText().isEmpty()) {
-            afficherErreur("Veuillez saisir votre prénom.");
-            return;
-        }
-
-        if (adresseField.getText().isEmpty()) {
-            afficherErreur("Veuillez saisir votre adresse.");
-            return;
-        }
-        if (telText.isEmpty()) {
-            afficherErreur("Téléphone non valide. Veuillez saisir un numéro de téléphone.");
-            return;
-        }
-        if (telField.getText().isEmpty() || nomField.getText().isEmpty() || prenomField.getText().isEmpty() || emailField.getText().isEmpty() || adresseField.getText().isEmpty()) {
+        // Vérification des champs obligatoires
+        if (nom.isEmpty() || prenom.isEmpty() || adresse.isEmpty() || telText.isEmpty() || email.isEmpty()) {
             afficherErreur("Veuillez remplir tous les champs.");
             return;
         }
 
-        // Convertir la valeur du champ telField en entier
-        commande.setTel(Integer.parseInt(telText));
+        // Vérification si telField contient une valeur numérique
+        if (!telText.matches("\\d+")) { // Vérifie si la chaîne contient uniquement des chiffres
+            afficherErreur("Le numéro de téléphone doit être un nombre.");
+            return;
+        }
 
+        // Vérification de l'adresse email
+        if (!isValidEmail(email)) {
+            afficherErreur("Adresse e-mail invalide.");
+            return;
+        }
+        // Vérification des champs nom et prénom
+        if (!nom.matches("[a-zA-Z]+")) { // Vérifie si la chaîne contient uniquement des lettres
+            afficherErreur("Le nom doit être une chaîne de caractères.");
+            return;
+        }
+
+        if (!prenom.matches("[a-zA-Z]+")) { // Vérifie si la chaîne contient uniquement des lettres
+            afficherErreur("Le prénom doit être une chaîne de caractères.");
+            return;
+        }
+
+        // Création de la commande
+        Commande commande = new Commande();
+        commande.setNom(nom);
+        commande.setPrenom(prenom);
+        commande.setAddress(adresse);
+        commande.setTel(Integer.parseInt(telText));
+        commande.setMail(email);
+
+        // Ajout de la commande
+        CommandeService commandeService = new CommandeService();
         try {
             commandeService.ajouter(commande);
             afficherConfirmation("Commande ajoutée");

@@ -15,6 +15,7 @@ import javafx.collections.FXCollections;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
+import java.awt.event.ActionEvent;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
@@ -86,34 +87,23 @@ public class Afficherpanier {
     }
 
     @FXML
-    void modifierPanier(javafx.event.ActionEvent event) {
+    void modifierPanier(javafx.event.ActionEvent event) throws SQLException {
+        int quantite = Integer.parseInt(quantiteTextField.getText());
+        float prix = Float.parseFloat(prixTextField.getText());
+        Panier p = new Panier(idp, quantite, nom, prix, null);
+        css.modifier(p);
         try {
-            int quantite = Integer.parseInt(quantiteTextField.getText());
-            Panier p = new Panier(idp, quantite, nom, prix, null);
             css.modifier(p);
-
-            Alert a = new Alert(Alert.AlertType.INFORMATION);
-            a.setTitle("Succes");
-            a.setContentText("Panier modifié avec succès");
-            a.showAndWait();
-
-            initialize();
-        } catch (NumberFormatException e) {
-            Alert errorAlert = new Alert(Alert.AlertType.ERROR);
-            errorAlert.setTitle("Erreur");
-            errorAlert.setHeaderText(null);
-            errorAlert.setContentText("Veuillez saisir des valeurs numériques valides pour la quantité et le prix.");
-            errorAlert.showAndWait();
         } catch (SQLException e) {
-            Alert errorAlert = new Alert(Alert.AlertType.ERROR);
-            errorAlert.setTitle("Erreur de base de données");
-            errorAlert.setHeaderText(null);
-            errorAlert.setContentText("Une erreur est survenue lors de la modification du panier. Veuillez réessayer plus tard.");
-            errorAlert.showAndWait();
+            throw new RuntimeException(e);
         }
+        Alert a = new Alert(Alert.AlertType.WARNING);
+
+        a.setTitle("Succes");
+        a.setContentText("Cateygorie Modifiée");
+        a.showAndWait();
+        initialize();
     }
-
-
     @FXML
     void supprimerPanier() {
         Panier selected = panierListView.getSelectionModel().getSelectedItem();
@@ -141,10 +131,10 @@ public class Afficherpanier {
     }
 
     @FXML
-    void triasc() {
+    void triasc(javafx.event.ActionEvent event) {
         List<Panier> temp;
         try {
-            temp = css.tri_par_nom();
+            temp = css.tri_par_nom_asc();
             ObservableList<Panier> updatedList = FXCollections.observableArrayList(temp);
             panierListView.setItems(updatedList);
         } catch (SQLException e) {
@@ -153,10 +143,10 @@ public class Afficherpanier {
     }
 
     @FXML
-    void tridesc() {
+    void tridesc(javafx.event.ActionEvent event) {
         List<Panier> temp;
         try {
-            temp = css.tri_par_nom2();
+            temp = css.tri_par_nom_desc();
             ObservableList<Panier> updatedList = FXCollections.observableArrayList(temp);
             panierListView.setItems(updatedList);
         } catch (SQLException e) {

@@ -8,7 +8,7 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 public class CommandeService implements InterfaceService<Commande> {
-     Connection cnx = MaConnexion.getInstance().getCnx();
+    Connection cnx = MaConnexion.getInstance().getCnx();
     @Override
     public void ajouter(Commande commande) throws SQLException {
         String req="INSERT INTO commande (tel,nom,prenom,mail,panier,address) VALUES(" +
@@ -78,7 +78,7 @@ public class CommandeService implements InterfaceService<Commande> {
     }
 
     @Override
-    public List<Commande> tri_par_nom() throws SQLException {
+    public List<Commande> tri_par_nom_asc() throws SQLException {
         List<Commande> commandes=new ArrayList<>();
         String req = "SELECT * FROM commande ORDER BY nom asc";
         Statement statement = cnx.createStatement();
@@ -128,7 +128,7 @@ public class CommandeService implements InterfaceService<Commande> {
     }
 
     @Override
-    public List<Commande> tri_par_nom2() throws SQLException {
+    public List<Commande> tri_par_nom_desc() throws SQLException {
         List<Commande> commandes=new ArrayList<>();
         String req = "SELECT * FROM commande ORDER BY nom desc";
         Statement statement = cnx.createStatement();
