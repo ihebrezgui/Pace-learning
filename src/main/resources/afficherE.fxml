@@ -8,7 +8,6 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.AfficherE">
    <children>
       <AnchorPane layoutX="10.0" layoutY="10.0" prefHeight="635.0" prefWidth="944.0">
@@ -34,12 +33,12 @@
             </Button>
             <ImageView fitHeight="616.0" fitWidth="324.0" layoutY="6.0" pickOnBounds="true">
                <image>
-                  <Image url="@../../pngtree-teacher-with-student-png-image_6877693.png" />
+                  <Image url="@pngtree-teacher-with-student-png-image_6877693.png" />
                </image>
             </ImageView>
             <ImageView fitHeight="70.0" fitWidth="68.0" layoutX="10.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../123456.png" />
+                  <Image url="@123456.png" />
                </image>
             </ImageView>
             <Label fx:id="next" layoutX="431.0" layoutY="497.0" stylesheets="@../../../../../../Downloads/study_land%20(5)/study_land/src/main/resources/styles.css" text=" " />

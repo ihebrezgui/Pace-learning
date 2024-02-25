@@ -1,14 +1,35 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="$CONTROLLER_NAME$"
-            prefHeight="400.0" prefWidth="600.0" >
 
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.Partnerships">
+   <children>
+      <AnchorPane layoutX="10.0" layoutY="10.0" prefHeight="557.0" prefWidth="802.0">
+         <children>
+            <Label layoutX="335.0" layoutY="21.0" prefHeight="21.0" prefWidth="126.0" stylesheets="@../../../../../../Downloads/study_land%20(5)/study_land/src/main/resources/styles.css" text="Nom Partnership" />
+            <TextField fx:id="NomP" layoutX="475.0" layoutY="17.0" stylesheets="@../../../../../../Downloads/study_land%20(5)/study_land/src/main/resources/styles.css" />
+            <Button layoutX="671.0" layoutY="103.0" mnemonicParsing="false" onAction="#AjouterP" prefHeight="29.0" prefWidth="71.0" stylesheets="@../../../../../../Downloads/study_land%20(5)/study_land/src/main/resources/styles.css" text="Ajouter" />
+            <Button layoutX="409.0" layoutY="371.0" mnemonicParsing="false" onAction="#Afficherp" prefHeight="26.0" prefWidth="91.0" stylesheets="@../../../../../../Downloads/study_land%20(5)/study_land/src/main/resources/styles.css" text="Afficher" />
+            <ListView fx:id="partnershipsListView" layoutX="297.0" layoutY="167.0" prefHeight="190.0" prefWidth="532.0" stylesheets="@../../../../../../Downloads/study_land%20(5)/study_land/src/main/resources/styles.css" />
+            <Button layoutX="515.0" layoutY="371.0" mnemonicParsing="false" onAction="#supprimerp" prefHeight="26.0" prefWidth="91.0" stylesheets="@../../../../../../Downloads/study_land%20(5)/study_land/src/main/resources/styles.css" text="Supprimer" />
+            <Button layoutX="626.0" layoutY="371.0" mnemonicParsing="false" onAction="#modifierp" prefHeight="26.0" prefWidth="91.0" stylesheets="@../../../../../../Downloads/study_land%20(5)/study_land/src/main/resources/styles.css" text="Modifier" />
+            <ImageView fitHeight="557.0" fitWidth="295.0" pickOnBounds="true">
+               <image>
+                  <Image url="@../../../../../../Downloads/study_land%20(5)/study_land/src/main/resources/src/Categorie.jpg" />
+               </image>
+            </ImageView>
+            <Label layoutX="335.0" layoutY="60.0" prefHeight="21.0" prefWidth="126.0" stylesheets="@../../../../../../Downloads/study_land%20(5)/study_land/src/main/resources/styles.css" text="domaine" />
+            <TextField fx:id="domaine" layoutX="475.0" layoutY="57.0" stylesheets="@../../../../../../Downloads/study_land%20(5)/study_land/src/main/resources/styles.css" />
+            <Label layoutX="335.0" layoutY="92.0" prefHeight="21.0" prefWidth="126.0" stylesheets="@../../../../../../Downloads/study_land%20(5)/study_land/src/main/resources/styles.css" text="choix" />
+            <TextField fx:id="choix" layoutX="475.0" layoutY="88.0" stylesheets="@../../../../../../Downloads/study_land%20(5)/study_land/src/main/resources/styles.css" />
+         </children>
+      </AnchorPane>
+   </children>
 </AnchorPane>

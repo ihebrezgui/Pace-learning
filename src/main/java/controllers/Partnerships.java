@@ -1,2 +1,4 @@
-package controllers;public class Partnerships {
+package controllers;
+
+public class Partnerships {
 }
