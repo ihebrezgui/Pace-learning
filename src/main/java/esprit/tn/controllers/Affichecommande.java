@@ -198,37 +198,51 @@ public class Affichecommande {
 
     @FXML
     void updatecommande(javafx.event.ActionEvent event) throws SQLException {
-        String nom = textFieldNom.getText();
-        String prenom = textFieldPrenom.getText();
-        int tel;
-        try {
-            tel = Integer.parseInt(textFieldTel.getText());
-        } catch (NumberFormatException e) {
-            afficherMessageErreur("Téléphone", "Veuillez saisir un numéro de téléphone valide.");
-            return;
-        }
-        String mail = textFieldEmail.getText();
-        String address = textFieldAdresse.getText();
+        String nom = textFieldNom.getText().trim();
+        String prenom = textFieldPrenom.getText().trim();
+        String telStr = textFieldTel.getText().trim();
+        String mail = textFieldEmail.getText().trim();
+        String address = textFieldAdresse.getText().trim();
 
         // Vérification du champ nom
         if (nom.isEmpty()) {
             afficherMessageErreur("Nom", "Veuillez saisir un nom.");
             return;
         }
+        if (!nom.matches("[a-zA-Z]+")) {
+            afficherMessageErreur("Nom", "Le nom doit contenir uniquement des lettres.");
+            return;
+        }
 
-        // Vérification du champ prenom
+        // Vérification du champ prénom
         if (prenom.isEmpty()) {
             afficherMessageErreur("Prénom", "Veuillez saisir un prénom.");
             return;
         }
-
-        // Vérification du champ tel (numéro de téléphone)
-        if (textFieldTel.getText().isEmpty()) {
-            afficherMessageErreur("Téléphone", "Veuillez saisir un numéro de téléphone.");
+        if (!prenom.matches("[a-zA-Z]+")) {
+            afficherMessageErreur("Prénom", "Le prénom doit contenir uniquement des lettres.");
             return;
         }
 
-        // Vérification du champ mail (email)
+        // Vérification du champ téléphone
+        if (telStr.isEmpty()) {
+            afficherMessageErreur("Téléphone", "Veuillez saisir un numéro de téléphone.");
+            return;
+        }
+        if (!telStr.matches("\\d+")) {
+            afficherMessageErreur("Téléphone", "Le numéro de téléphone doit être un nombre.");
+            return;
+        }
+
+        int tel;
+        try {
+            tel = Integer.parseInt(telStr);
+        } catch (NumberFormatException e) {
+            afficherMessageErreur("Téléphone", "Veuillez saisir un numéro de téléphone valide.");
+            return;
+        }
+
+        // Vérification du champ email
         if (mail.isEmpty()) {
             afficherMessageErreur("Email", "Veuillez saisir une adresse email.");
             return;
@@ -238,9 +252,13 @@ public class Affichecommande {
             return;
         }
 
-        // Vérification du champ address (adresse)
+        // Vérification du champ adresse
         if (address.isEmpty()) {
             afficherMessageErreur("Adresse", "Veuillez saisir une adresse.");
+            return;
+        }
+        if (!address.matches("[a-zA-Z0-9\\s]+")) {
+            afficherMessageErreur("Adresse", "L'adresse doit contenir uniquement des lettres, des chiffres et des espaces.");
             return;
         }
 

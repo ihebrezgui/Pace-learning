@@ -22,6 +22,7 @@ public class CommandeCell extends ListCell<Commande> {
             StringBuilder sb = new StringBuilder();
             sb.append("ID: ").append(commande.getIdc()).append("\n")
                     .append("Nom: ").append(commande.getNom()).append("\n")
+                    .append("Prénom: ").append(commande.getPrenom()).append("\n")
                     .append("Téléphone: ").append(commande.getTel()).append("\n")
                     .append("Email: ").append(commande.getMail()).append("\n")
                     .append("Adresse: ").append(commande.getAddress()).append("\n")

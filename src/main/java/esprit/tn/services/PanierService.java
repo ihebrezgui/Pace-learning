@@ -30,14 +30,13 @@ public class PanierService implements InterfaceService<Panier> {
 
     @Override
     public void modifier(Panier panier) throws SQLException {
-        String req = "UPDATE panier SET quantite=?, nom=?, prix=?, prod_id=? WHERE idp=?";
+        String reqs = "UPDATE panier SET quantite=?, nom=?, prix=? WHERE idp=?";
 
-        PreparedStatement ps =cnx.prepareStatement(req);
+        PreparedStatement ps =cnx.prepareStatement(reqs);
         ps.setInt(1, panier.getQuantite());
         ps.setString(2, panier.getNom());
         ps.setFloat(3, panier.getPrix());
-        ps.setString(4, panier.getProd_id());
-        ps.setInt(5, panier.getIdp());
+        ps.setInt(4, panier.getIdp());
         ps.executeUpdate();
         ps.close();
     }

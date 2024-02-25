@@ -1,6 +1,7 @@
 package esprit.tn.controllers;
 
 import esprit.tn.Cellule.PanierCell;
+import esprit.tn.models.Formation;
 import javafx.collections.ObservableList;
 
 import javafx.fxml.FXML;
@@ -34,8 +35,8 @@ public class Afficherpanier {
 
     public int idp;
     public float prix;
-
     public String nom;
+    public Formation Formation;
 
     private final PanierService css = new PanierService();
     @FXML
@@ -88,13 +89,15 @@ public class Afficherpanier {
     @FXML
     void modifierPanier(javafx.event.ActionEvent event) {
         try {
-            int quantite = Integer.parseInt(quantiteTextField.getText());
-            Panier p = new Panier(idp, quantite, nom, prix, null);
+            int nouvelleQuantite = Integer.parseInt(quantiteTextField.getText());
+            float nouveauPrixTotal = nouvelleQuantite * Formation.getPrix();
+
+            Panier p = new Panier(idp, nouvelleQuantite, nom, nouveauPrixTotal, null);
             css.modifier(p);
 
             Alert a = new Alert(Alert.AlertType.INFORMATION);
             a.setTitle("Succes");
-            a.setContentText("Panier modifié avec succès");
+            a.setContentText("Panier modifié avec succès. Le nouveau prix est : " +  nouveauPrixTotal);
             a.showAndWait();
 
             initialize();
@@ -112,8 +115,6 @@ public class Afficherpanier {
             errorAlert.showAndWait();
         }
     }
-
-
     @FXML
     void supprimerPanier() {
         Panier selected = panierListView.getSelectionModel().getSelectedItem();
