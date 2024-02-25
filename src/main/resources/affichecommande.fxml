@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="esprit.tn.controllers.Affichecommande">
+    <children>
+        <ListView fx:id="listViewCommande" layoutY="42.0" onMouseClicked="#SetValue" prefHeight="210.0" prefWidth="916.0" />
+        <Label layoutX="342.0" layoutY="14.0" prefHeight="30.0" prefWidth="232.0" text="Détails de la commande" textAlignment="CENTER">
+            <font>
+                <Font name="System Bold" size="20.0" />
+            </font>
+        </Label>
+        <TextField fx:id="textFieldTel" layoutX="182.0" layoutY="296.0" promptText="tel" />
+        <TextField fx:id="textFieldNom" layoutX="24.0" layoutY="261.0" promptText="nom" />
+        <TextField fx:id="textFieldPrenom" layoutX="24.0" layoutY="296.0" promptText="prenom" />
+        <TextField fx:id="textFieldEmail" layoutX="24.0" layoutY="327.0" promptText="mail" />
+        <TextField fx:id="textFieldAdresse" layoutX="182.0" layoutY="261.0" promptText="adresse" />
+        <TextField fx:id="textFieldRecherche" layoutX="616.0" layoutY="274.0" onKeyPressed="#recherchecommande" prefHeight="26.0" prefWidth="232.0" promptText="search" />
+        <Button layoutX="562.0" layoutY="314.0" mnemonicParsing="false" onAction="#triasc" prefHeight="26.0" prefWidth="107.0" style="-fx-background-color: #2196F3;" text="Tri croissant" textFill="#faf8f8">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></Button>
+        <Button layoutX="678.0" layoutY="314.0" mnemonicParsing="false" onAction="#tridesc" prefHeight="26.0" prefWidth="107.0" style="-fx-background-color: #2196F3;" text="Tri décroissant" textFill="#f7f3f3">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></Button>
+        <Button layoutX="793.0" layoutY="314.0" mnemonicParsing="false" onAction="#pdf" prefHeight="26.0" prefWidth="114.0" style="-fx-background-color: #2196F3;" text="Télècharger.PDF" textFill="#fcfafa">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></Button>
+
+        <Button layoutX="24.0" layoutY="365.0" mnemonicParsing="false" onAction="#updatecommande" prefHeight="26.0" prefWidth="107.0" style="-fx-background-color: #2196F3;" text="Modifier" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></Button>
+        <Button layoutX="138.0" layoutY="365.0" mnemonicParsing="false" onAction="#suppcommande" prefHeight="26.0" prefWidth="107.0" style="-fx-background-color: #2196F3;" text="supprimer" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></Button>
+      <Button layoutX="794.0" layoutY="365.0" mnemonicParsing="false" onAction="#Retour" prefHeight="26.0" prefWidth="107.0" style="-fx-background-color: #FF9843;" text="Retour" textFill="#faf7f7">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></Button>
+      <Label layoutX="30.0" layoutY="10.0" text="Pace Learning" textFill="#ff9843">
+         <font>
+            <Font name="System Bold" size="21.0" />
+         </font>
+      </Label>
+    </children>
+</AnchorPane>

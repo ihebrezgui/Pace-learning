@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.image.ImageView?>
+<AnchorPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="esprit.tn.controllers.CarteF"
+            prefHeight="400.0" prefWidth="600.0">
+    <children>
+        <Label fx:id="productNameLabel" layoutX="7.0" layoutY="14.0" prefHeight="22.0" prefWidth="117.0" text="Type:">
+            <font>
+                <Font name="System Bold" size="15.0" />
+            </font>
+        </Label>
+        <Label fx:id="productPriceLabel" layoutX="138.0" layoutY="14.0" prefHeight="22.0" prefWidth="93.0" text="Prix Formation:">
+            <font>
+                <Font name="System Bold" size="15.0" />
+            </font>
+        </Label>
+        <Label fx:id="productDescriptionLabel" layoutX="7.0" layoutY="50.0" prefHeight="10.0" prefWidth="300.0" wrapText="true">
+            <font>
+                <Font name="System Bold" size="10.0" />
+            </font>
+        </Label>
+        <ImageView fx:id="productImageView" fitHeight="104.0" fitWidth="186.0" layoutX="3.0" layoutY="150.0" pickOnBounds="true" preserveRatio="true" />
+        <Spinner fx:id="quantitySpinner" layoutX="14.0" layoutY="270.0" prefHeight="26.0" prefWidth="85.0" />
+        <Button fx:id="addButton" layoutX="112.0" layoutY="271.0" mnemonicParsing="false" onAction="#add" prefHeight="26.0" prefWidth="67.0" style="-fx-background-color: #2196F3;" text="Add" textFill="#fcfafa">
+            <font>
+                <Font name="System Bold" size="12.0" />
+            </font>
+        </Button>
+    </children>
+</AnchorPane>
