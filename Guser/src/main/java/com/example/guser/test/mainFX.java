@@ -1,4 +1,4 @@
-package com.example.guser;
+package com.example.guser.test;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -7,12 +7,12 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-public class HelloApplication extends Application {
+public class mainFX extends Application {
     @Override
     public void start(Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("hello-view.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(mainFX.class.getResource("/com/example/guser/ModifierUtilisateur.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 320, 240);
-        stage.setTitle("Hello!");
+        stage.setTitle("FX");
         stage.setScene(scene);
         stage.show();
     }

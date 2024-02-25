@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.guser.controller.InterfacePrincipale">
+   <children>
+      <Button layoutX="204.0" layoutY="307.0" mnemonicParsing="false" onAction="#supprimerU" prefHeight="40.0" prefWidth="192.0" style="-fx-border-color: black;" text="Supprimer Utilisateur">
+         <effect>
+            <DropShadow>
+               <color>
+                  <Color red="0.20392157137393951" green="0.40784314274787903" blue="0.7529411911964417" />
+               </color>
+            </DropShadow>
+         </effect>
+         <font>
+            <Font name="Cambria Bold Italic" size="15.0" />
+         </font></Button>
+      <Button layoutX="204.0" layoutY="253.0" mnemonicParsing="false" onAction="#modifierU" prefHeight="40.0" prefWidth="192.0" style="-fx-border-color: black;" text="Modifier Utilisateur">
+         <effect>
+            <DropShadow>
+               <color>
+                  <Color red="0.20392157137393951" green="0.40784314274787903" blue="0.7529411911964417" />
+               </color>
+            </DropShadow>
+         </effect>
+         <font>
+            <Font name="Cambria Bold Italic" size="15.0" />
+         </font></Button>
+      <Button layoutX="204.0" layoutY="200.0" mnemonicParsing="false" onAction="#afficherU" prefHeight="40.0" prefWidth="192.0" style="-fx-border-color: black;" text="Afficher Utilisateur">
+         <effect>
+            <DropShadow>
+               <color>
+                  <Color red="0.20392157137393951" green="0.40784314274787903" blue="0.7529411911964417" />
+               </color>
+            </DropShadow>
+         </effect>
+         <font>
+            <Font name="Cambria Bold Italic" size="15.0" />
+         </font></Button>
+      <Button layoutX="204.0" layoutY="139.0" mnemonicParsing="false" onAction="#ajouterU" prefHeight="40.0" prefWidth="192.0" style="-fx-background-color: 86A7FC; -fx-border-color: black;" text="Ajouter Utilisateur" textAlignment="CENTER">
+         <font>
+            <Font name="Cambria Bold Italic" size="15.0" />
+         </font>
+         <effect>
+            <DropShadow height="32.72" radius="12.93">
+               <color>
+                  <Color red="0.20392157137393951" green="0.40784314274787903" blue="0.7529411911964417" />
+               </color>
+            </DropShadow>
+         </effect></Button>
+      <Text fill="#0b0494" layoutX="229.0" layoutY="69.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Utilisateur" textAlignment="CENTER">
+         <font>
+            <Font name="Bell MT Bold" size="30.0" />
+         </font>
+      </Text>
+   </children>
+</AnchorPane>

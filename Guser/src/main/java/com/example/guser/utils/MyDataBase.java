@@ -29,4 +29,7 @@ public class MyDataBase {
     public Connection getConnection() {
         return connection;
     }
+
+    public void closeConnection() {
+    }
 }
