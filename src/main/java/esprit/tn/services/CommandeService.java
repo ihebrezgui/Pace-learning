@@ -6,6 +6,7 @@ import esprit.tn.util.MaConnexion;
 
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 public class CommandeService implements InterfaceService<Commande> {
     Connection cnx = MaConnexion.getInstance().getCnx();
@@ -78,7 +79,7 @@ public class CommandeService implements InterfaceService<Commande> {
     }
 
     @Override
-    public List<Commande> tri_par_nom_asc() throws SQLException {
+    public List<Commande> tri_par_prix_asc() throws SQLException {
         List<Commande> commandes=new ArrayList<>();
         String req = "SELECT * FROM commande ORDER BY nom asc";
         Statement statement = cnx.createStatement();
@@ -104,31 +105,28 @@ public class CommandeService implements InterfaceService<Commande> {
 
     @Override
     public List<Commande> chercher(String nom) throws SQLException {
-        List<Commande> commandes=new ArrayList<>();
+        List<Commande> commandes = new ArrayList<>();
         String req = "SELECT * FROM commande WHERE nom = ?";
         PreparedStatement preparedStatement = cnx.prepareStatement(req);
         preparedStatement.setString(1, nom);
         ResultSet rs = preparedStatement.executeQuery();
-        while (rs.next())
-        {
-            Commande co=new Commande();
+        while (rs.next()) {
+            Commande co = new Commande();
             co.setIdc(rs.getInt("idc"));
             co.setTel(rs.getInt("tel"));
             co.setNom(rs.getString("nom"));
             co.setPrenom(rs.getString("prenom"));
             co.setMail(rs.getString("mail"));
+            co.setAddress(rs.getString("address")); // Correction : Suppression de la virgule supplémentaire
             co.setPanier(rs.getString("panier"));
-            co.setAddress(rs.getString("address"));
 
             commandes.add(co);
         }
         return commandes;
-
-
     }
 
     @Override
-    public List<Commande> tri_par_nom_desc() throws SQLException {
+    public List<Commande> tri_par_prix_desc() throws SQLException {
         List<Commande> commandes=new ArrayList<>();
         String req = "SELECT * FROM commande ORDER BY nom desc";
         Statement statement = cnx.createStatement();

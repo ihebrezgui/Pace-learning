@@ -32,15 +32,14 @@ public class PanierService implements InterfaceService<Panier> {
     public void modifier(Panier panier) throws SQLException {
         String req = "UPDATE panier SET quantite=?, nom=?, prix=?, prod_id=? WHERE idp=?";
 
-        PreparedStatement ps = cnx.prepareStatement(req);
-        ps.setInt(1, (panier.getQuantite()));
-        ps.setString(2, (panier.getNom()));
-        ps.setFloat(3, (panier.getPrix()));
-        ps.setString(4,( panier.getProd_id()));
-        ps.setInt(5, (panier.getIdp()));
+        PreparedStatement ps =cnx.prepareStatement(req);
+        ps.setInt(1, panier.getQuantite());
+        ps.setString(2, panier.getNom());
+        ps.setFloat(3, panier.getPrix());
+        ps.setString(4, panier.getProd_id());
+        ps.setInt(5, panier.getIdp());
         ps.executeUpdate();
         ps.close();
-
     }
 
     @Override
@@ -73,9 +72,9 @@ public class PanierService implements InterfaceService<Panier> {
     }
 
     @Override
-    public List<Panier> tri_par_nom_asc() throws SQLException {
+    public List<Panier> tri_par_prix_asc() throws SQLException {
         List<Panier> paniers = new ArrayList<>();
-        String req = "SELECT * FROM panier ORDER BY nom ASC";
+        String req = "SELECT * FROM panier ORDER BY prix ASC";
         Statement st = cnx.createStatement();
         ResultSet rs = st.executeQuery(req);
         while (rs.next()) {
@@ -115,9 +114,9 @@ public class PanierService implements InterfaceService<Panier> {
 
 
     @Override
-    public List<Panier> tri_par_nom_desc() throws SQLException {
+    public List<Panier> tri_par_prix_desc() throws SQLException {
         List<Panier> paniers = new ArrayList<>();
-        String req = "SELECT * FROM panier ORDER BY nom DESC";
+        String req = "SELECT * FROM panier ORDER BY prix DESC";
         Statement st = cnx.createStatement();
         ResultSet rs = st.executeQuery(req);
         while (rs.next()) {

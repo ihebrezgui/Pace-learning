@@ -315,7 +315,7 @@ public class Affichecommande {
         List<Commande> temp;
         temp = null;
         try {
-            temp = css.tri_par_nom_asc();
+            temp = css.tri_par_prix_asc();
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
@@ -328,7 +328,7 @@ public class Affichecommande {
         List<Commande> temp;
         temp = null;
         try {
-            temp = css.tri_par_nom_desc();
+            temp = css.tri_par_prix_desc();
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }

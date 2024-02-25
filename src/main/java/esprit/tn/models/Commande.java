@@ -1,13 +1,16 @@
 package esprit.tn.models;
 
 
+import java.util.List;
+
 public class Commande {
     private int idc,tel;
     private String nom,
             prenom,
             mail,
-            address,
-            panier;
+            address, panier ;
+
+
 
     public Commande(int idc, int tel, String nom, String prenom, String mail, String address, String panier) {
         this.idc = idc;
@@ -38,6 +41,7 @@ public class Commande {
     public String getPanier() {
         return panier;
     }
+
 
 
     public int getIdc() {

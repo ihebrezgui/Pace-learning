@@ -7,9 +7,9 @@ public interface InterfaceService<T> {
         void modifier(T t) throws SQLException;
         void supprimer(int idc) throws SQLException;
         List<T>recuperer() throws SQLException;
-        List<T>tri_par_nom_asc() throws SQLException;
+        List<T>tri_par_prix_asc() throws SQLException;
         List<T>chercher(String nom) throws SQLException;
-        List<T>tri_par_nom_desc() throws SQLException;
+        List<T>tri_par_prix_desc() throws SQLException;
 
     }
 
