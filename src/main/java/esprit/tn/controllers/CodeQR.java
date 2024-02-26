@@ -78,10 +78,10 @@ public class CodeQR {
                 QR.add(commande);
             }
 
-        String qrData = String.valueOf(QR);
+            String qrData = String.valueOf(QR);
             // Générer et afficher le code QR
-        generateAndDisplayQRCode(qrData);
-    }
+            generateAndDisplayQRCode(qrData);
+        }
     }
 
     private void generateAndDisplayQRCode(String qrData) {
@@ -134,4 +134,4 @@ public class CodeQR {
     }
 
 
-    }
+}
