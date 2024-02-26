@@ -24,7 +24,10 @@ import java.awt.*;
 import java.io.File;
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
+import java.util.function.Predicate;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -296,61 +299,56 @@ public class Affichecommande {
 
     @FXML
     void recherchecommande(javafx.scene.input.KeyEvent event) {
-        textFieldRecherche.textProperty().addListener((observable, oldValue, newValue) -> {
-            // Créer un nouveau prédicat pour filtrer les éléments en fonction du nouveau texte de recherche
-            FilteredList<Commande> filteredList = new FilteredList<>(list, commande -> true); // Initialisez avec true pour afficher tous les éléments
+        // Create a new FilteredList with the original list as the source
+        FilteredList<Commande> filter = new FilteredList<>(listViewCommande.getItems(), ev -> true);
 
-            filteredList.setPredicate(commande -> {
-                // Si le texte de recherche est vide, afficher tous les éléments
-                if (newValue == null || newValue.isEmpty()) {
-                    return true;
+        // Add a listener on the text property of the search field to update the predicate of the FilteredList
+        textFieldRecherche.textProperty().addListener((observable, oldValue, searchText) -> {
+            // Update the predicate based on the search text
+            filter.setPredicate(commande -> {
+                if (searchText == null || searchText.isEmpty()) {
+                    return true; // Show all items when the filter text is empty.
                 }
 
-                // Convertir les valeurs en minuscules pour une comparaison insensible à la casse
-                String lowerCaseFilter = newValue.toLowerCase();
+                String lowerCaseFilter = searchText.toLowerCase();
 
-                // Vérifier si le nom de la commande contient le texte de recherche
                 if (commande.getNom().toLowerCase().contains(lowerCaseFilter)) {
-                    return true; // Correspondance trouvée
+                    return true; // Filter matches nom.
                 }
 
-                // Aucune correspondance trouvée
-                return false;
+                return false; // Does not match.
             });
-
-            // Créer une nouvelle liste triée à partir de la liste filtrée
-            SortedList<Commande> sortedList = new SortedList<>(filteredList);
-
-            // Lier la liste triée au ListView
-            listViewCommande.setItems(sortedList);
         });
+
+        // Create a new SortedList and attach it to the FilteredList
+        SortedList<Commande> sortedList = new SortedList<>(filter);
+
+        // Set the comparator for the sorted list
+        sortedList.setComparator(Comparator.comparing(Commande::getNom));
+
+        // Set the items of the ListView to the sorted list
+        listViewCommande.setItems(sortedList);
+
+        // Refresh the ListView to update the filtered items
+        listViewCommande.refresh();
     }
-
-
-
     @FXML
     void triasc(javafx.event.ActionEvent event) {
-        List<Commande> temp;
-        temp = null;
-        try {
-            temp = css.tri_par_prix_asc();
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-        ObservableList<Commande> updatedList = FXCollections.observableArrayList(temp);
+        List<Commande> tempList = new ArrayList<>(listViewCommande.getItems());
+
+        tempList.sort(Comparator.comparing(Commande::getIdc));
+
+        ObservableList<Commande> updatedList = FXCollections.observableArrayList(tempList);
         listViewCommande.setItems(updatedList);
     }
 
     @FXML
     void tridesc(javafx.event.ActionEvent event) {
-        List<Commande> temp;
-        temp = null;
-        try {
-            temp = css.tri_par_prix_desc();
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-        ObservableList<Commande> updatedList = FXCollections.observableArrayList(temp);
+        List<Commande> tempList = new ArrayList<>(listViewCommande.getItems());
+
+        tempList.sort(Comparator.comparing(Commande::getIdc).reversed());
+
+        ObservableList<Commande> updatedList = FXCollections.observableArrayList(tempList);
         listViewCommande.setItems(updatedList);
     }
 

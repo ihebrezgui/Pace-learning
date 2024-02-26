@@ -98,14 +98,13 @@ public class Commande {
 
     @Override
     public String toString() {
-        return "commande{" +
-                "Id_Commande=" + idc +
-                ", Tel=" + tel +
-                ", Nom='" + nom + '\'' +
-                ", Prenom='" + prenom + '\'' +
-                ", Mail='" + mail + '\'' +
-                ", Address='" + address + '\'' +
-                ", Panier='" + panier + '\'' +
+        return "Commande{" +
+                "id=" + idc +
+                ", nom='" + nom + '\'' +
+                ", prenom='" + prenom + '\'' +
+                ", mail='" + mail + '\'' +
+                ", address='" + address + '\'' +
+                ", panier='" + panier + '\'' +
                 '}';
     }
 

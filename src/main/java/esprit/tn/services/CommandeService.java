@@ -79,9 +79,10 @@ public class CommandeService implements InterfaceService<Commande> {
     }
 
     @Override
+    //tri par id commande croissant
     public List<Commande> tri_par_prix_asc() throws SQLException {
         List<Commande> commandes=new ArrayList<>();
-        String req = "SELECT * FROM commande ORDER BY nom asc";
+        String req = "SELECT * FROM commande ORDER BY idc asc";
         Statement statement = cnx.createStatement();
         ResultSet rs = statement.executeQuery(req);
 
@@ -102,11 +103,33 @@ public class CommandeService implements InterfaceService<Commande> {
 
 
     }
+    //tri par id commande decroissant
+    @Override
+    public List<Commande> tri_par_prix_desc() throws SQLException {
+        List<Commande> commandes = new ArrayList<>();
+        String req = "SELECT * FROM commande ORDER BY nom desc";
+        Statement statement = cnx.createStatement();
+        ResultSet rs = statement.executeQuery(req);
+
+        while (rs.next()) {
+            Commande co = new Commande();
+
+            co.setIdc(rs.getInt("idc"));
+            co.setTel(rs.getInt("tel"));
+            co.setMail(rs.getString("nom"));
+            co.setNom(rs.getString("prenom"));
+            co.setPrenom(rs.getString("mail"));
+            co.setAddress(rs.getString("address"));
+            co.setPanier(rs.getString("panier"));
+            commandes.add(co);
+        }
+        return commandes;
+    }
 
     @Override
     public List<Commande> chercher(String nom) throws SQLException {
         List<Commande> commandes = new ArrayList<>();
-        String req = "SELECT * FROM commande WHERE nom = ?";
+        String req = "SELECT * FROM commande WHERE idc = ?";
         PreparedStatement preparedStatement = cnx.prepareStatement(req);
         preparedStatement.setString(1, nom);
         ResultSet rs = preparedStatement.executeQuery();
@@ -125,26 +148,5 @@ public class CommandeService implements InterfaceService<Commande> {
         return commandes;
     }
 
-    @Override
-    public List<Commande> tri_par_prix_desc() throws SQLException {
-        List<Commande> commandes=new ArrayList<>();
-        String req = "SELECT * FROM commande ORDER BY nom desc";
-        Statement statement = cnx.createStatement();
-        ResultSet rs = statement.executeQuery(req);
 
-        while (rs.next())
-        {
-            Commande co=new Commande();
-
-            co.setIdc(rs.getInt("idc"));
-            co.setTel(rs.getInt("tel"));
-            co.setMail(rs.getString("nom"));
-            co.setNom(rs.getString("prenom"));
-            co.setPrenom(rs.getString("mail"));
-            co.setAddress(rs.getString("address"));
-            co.setPanier(rs.getString("panier"));
-            commandes.add(co);
-        }
-        return commandes;
     }
-}
