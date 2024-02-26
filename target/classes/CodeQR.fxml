@@ -11,6 +11,6 @@
     <children>
         <Button fx:id="QRCodebtn" layoutX="14.0" layoutY="74.0" mnemonicParsing="false" onAction="#generateQrCode" prefHeight="26.0" prefWidth="164.0" text="Code Qr" />
         <ImageView fx:id="QRCode" fitHeight="150.0" fitWidth="200.0" layoutX="232.0" layoutY="28.0" pickOnBounds="true" preserveRatio="true" />
-        </children>
+    </children>
 
 </AnchorPane>

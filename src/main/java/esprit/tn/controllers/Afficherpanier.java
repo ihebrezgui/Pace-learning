@@ -18,6 +18,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.text.BreakIterator;
 import java.util.List;
 
 public class Afficherpanier {
@@ -36,9 +37,8 @@ public class Afficherpanier {
     public int idp;
     public float prix;
     public String nom;
-    public Formation Formation;
 
-    private final PanierService css = new PanierService();
+    private final PanierService ps = new PanierService();
     @FXML
     void Retour(javafx.event.ActionEvent event) {
         try {
@@ -85,19 +85,19 @@ public class Afficherpanier {
             // Gérer l'erreur de chargement de la vue
         }
     }
+    public Formation formation ;
 
     @FXML
     void modifierPanier(javafx.event.ActionEvent event) {
         try {
             int nouvelleQuantite = Integer.parseInt(quantiteTextField.getText());
-            float nouveauPrixTotal = nouvelleQuantite * Formation.getPrix();
-
-            Panier p = new Panier(idp, nouvelleQuantite, nom, nouveauPrixTotal, null);
-            css.modifier(p);
+            Float prix  = Float.parseFloat(prixTextField.getText());
+            Panier p = new Panier(idp, nouvelleQuantite, nom, prix, null);
+            ps.modifier(p);
 
             Alert a = new Alert(Alert.AlertType.INFORMATION);
-            a.setTitle("Succes");
-            a.setContentText("Panier modifié avec succès. Le nouveau prix est : " +  nouveauPrixTotal);
+            a.setTitle("Succès");
+            a.setContentText("Panier modifié avec succès. Le nouveau prix est ");
             a.showAndWait();
 
             initialize();
@@ -129,7 +129,7 @@ public class Afficherpanier {
             alert.showAndWait().ifPresent(type -> {
                 if (type == okButton) {
                     try {
-                        css.supprimer(selected.getIdp());
+                        ps.supprimer(selected.getIdp());
                         initialize();
                     } catch (SQLException e) {
                         throw new RuntimeException(e);
@@ -143,10 +143,10 @@ public class Afficherpanier {
 
     @FXML
     void triasc() {
-        List<Panier> temp;
+        List<Panier> tr;
         try {
-            temp = css.tri_par_prix_asc();
-            ObservableList<Panier> updatedList = FXCollections.observableArrayList(temp);
+            tr = ps.tri_par_prix_asc();
+            ObservableList<Panier> updatedList = FXCollections.observableArrayList(tr);
             panierListView.setItems(updatedList);
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -155,10 +155,10 @@ public class Afficherpanier {
 
     @FXML
     void tridesc() {
-        List<Panier> temp;
+        List<Panier> tr;
         try {
-            temp = css.tri_par_prix_desc();
-            ObservableList<Panier> updatedList = FXCollections.observableArrayList(temp);
+            tr = ps.tri_par_prix_desc();
+            ObservableList<Panier> updatedList = FXCollections.observableArrayList(tr);
             panierListView.setItems(updatedList);
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -168,7 +168,7 @@ public class Afficherpanier {
     @FXML
     void initialize() {
         try {
-            List<Panier> co = css.recuperer();
+            List<Panier> co = ps.recuperer();
             ObservableList<Panier> ob = FXCollections.observableList(co);
             panierListView.setCellFactory(param -> new PanierCell());
             panierListView.setItems(ob);

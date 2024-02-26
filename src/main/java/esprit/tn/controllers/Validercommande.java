@@ -161,7 +161,7 @@ public class Validercommande {
     }
 
     public void calculerTotal() throws SQLException {
-        String req = "SELECT SUM(prix) FROM panier";
+        String req = "SELECT SUM(prix * quantite) FROM panier";
         PreparedStatement pre = connection.prepareStatement(req);
         ResultSet res = pre.executeQuery();
         if (res.next()) {

@@ -22,7 +22,7 @@ public class PanierCell extends ListCell<Panier> {
             StringBuilder sb = new StringBuilder();
                      sb.append("Type Formation: ").append(item.getNom()).append("\n")
                     .append("Quantité: ").append(item.getQuantite()).append("\n")
-                    .append("Prix: ").append(String.format("%.2f", item.getPrix()));
+                    .append("Coût unitaire: ").append(String.format("%.2f", item.getPrix()));
 
             // Définition du texte du label
             label.setText(sb.toString());

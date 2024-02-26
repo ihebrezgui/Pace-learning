@@ -88,8 +88,9 @@ public class Carte implements Initializable {
                 PreparedStatement preparedStatement = connection.prepareStatement(insertData);
                 preparedStatement.setInt(1, quantity);
                 preparedStatement.setString(2, productTypeFLabel.getText());
-                double total = quantity * formation.getPrix();
-                preparedStatement.setDouble(3, total);
+               //double total = quantity * formation.getPrix();
+                preparedStatement.setFloat(3, formation.getPrix());
+                //preparedStatement.setDouble(3, total);
                 preparedStatement.setInt(4, productId);
 
                 preparedStatement.executeUpdate();
