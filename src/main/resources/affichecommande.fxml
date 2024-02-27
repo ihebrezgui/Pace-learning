@@ -4,52 +4,80 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="esprit.tn.controllers.Affichecommande">
+<AnchorPane prefHeight="504.0" prefWidth="886.0" style="-fx-background-color: #edf5fc;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="esprit.tn.controllers.Affichecommande">
     <children>
-            <ListView fx:id="listViewCommande" layoutX="15.0" layoutY="42.0" onMouseClicked="#SetValue" prefHeight="342.0" prefWidth="367.0" />
-        <Label layoutX="342.0" layoutY="14.0" prefHeight="30.0" prefWidth="232.0" text="Détails de la commande" textAlignment="CENTER">
+        <!-- En-tête -->
+        <Label layoutX="90.0" layoutY="21.0" text="Pace Learning" textFill="#ff9843">
+            <font>
+                <Font name="System Bold" size="21.0" />
+            </font>
+        </Label>
+
+        <!-- Titre de la section -->
+        <Label layoutX="342.0" layoutY="14.0" prefHeight="30.0" prefWidth="232.0" style="-fx-text-fill: #003366;" text="Détails de la commande" textAlignment="CENTER">
             <font>
                 <Font name="System Bold" size="20.0" />
             </font>
         </Label>
-        <TextField fx:id="textFieldTel" layoutX="571.0" layoutY="119.0" promptText="tel" />
-        <TextField fx:id="textFieldNom" layoutX="404.0" layoutY="73.0" promptText="nom" />
-        <TextField fx:id="textFieldPrenom" layoutX="404.0" layoutY="119.0" promptText="prenom" />
-        <TextField fx:id="textFieldEmail" layoutX="404.0" layoutY="161.0" promptText="mail" />
-        <TextField fx:id="textFieldAdresse" layoutX="571.0" layoutY="73.0" promptText="adresse" />
-        <TextField fx:id="textFieldRecherche" layoutX="616.0" layoutY="274.0" onKeyPressed="#recherchecommande" prefHeight="26.0" prefWidth="232.0" promptText="search" />
-        <Button layoutX="562.0" layoutY="314.0" mnemonicParsing="false" onAction="#triasc" prefHeight="26.0" prefWidth="107.0" style="-fx-background-color: #2196F3;" text="Tri croissant" textFill="#faf8f8">
-         <font>
-            <Font name="System Bold" size="12.0" />
-         </font></Button>
-        <Button layoutX="678.0" layoutY="314.0" mnemonicParsing="false" onAction="#tridesc" prefHeight="26.0" prefWidth="107.0" style="-fx-background-color: #2196F3;" text="Tri décroissant" textFill="#f7f3f3">
-         <font>
-            <Font name="System Bold" size="12.0" />
-         </font></Button>
-        <Button layoutX="793.0" layoutY="314.0" mnemonicParsing="false" onAction="#pdf" prefHeight="26.0" prefWidth="114.0" style="-fx-background-color: #2196F3;" text="Télècharger.PDF" textFill="#fcfafa">
-         <font>
-            <Font name="System Bold" size="12.0" />
-         </font></Button>
 
-        <Button layoutX="731.0" layoutY="71.0" mnemonicParsing="false" onAction="#updatecommande" prefHeight="26.0" prefWidth="107.0" style="-fx-background-color: #2196F3;" text="Modifier" textFill="WHITE">
-         <font>
-            <Font name="System Bold" size="12.0" />
-         </font></Button>
-        <Button layoutX="731.0" layoutY="104.0" mnemonicParsing="false" onAction="#suppcommande" prefHeight="26.0" prefWidth="107.0" style="-fx-background-color: #2196F3;" text="supprimer" textFill="WHITE">
-         <font>
-            <Font name="System Bold" size="12.0" />
-         </font></Button>
-      <Button layoutX="794.0" layoutY="365.0" mnemonicParsing="false" onAction="#Retour" prefHeight="26.0" prefWidth="107.0" style="-fx-background-color: #FF9843;" text="Retour" textFill="#faf7f7">
-         <font>
-            <Font name="System Bold" size="12.0" />
-         </font></Button>
-      <Label layoutX="30.0" layoutY="10.0" text="Pace Learning" textFill="#ff9843">
-         <font>
-            <Font name="System Bold" size="21.0" />
-         </font>
-      </Label>
+        <!-- Liste des commandes -->
+        <ListView fx:id="listViewCommande" layoutX="14.0" layoutY="75.0" onMouseClicked="#SetValue" prefHeight="402.0" prefWidth="367.0" />
+        <TextField fx:id="textFieldAdresse" layoutX="392.0" layoutY="248.0" prefWidth="200.0" promptText="Adresse" style="-fx-background-color: #FFFFFF; -fx-border-color: #B0C4DE; -fx-border-width: 2px; -fx-border-radius: 5px;" />
+        <TextField fx:id="textFieldEmail" layoutX="392.0" layoutY="328.0" prefWidth="200.0" promptText="Email" style="-fx-background-color: #FFFFFF; -fx-border-color: #B0C4DE; -fx-border-width: 2px; -fx-border-radius: 5px;" />
+        <TextField fx:id="textFieldPrenom" layoutX="392.0" layoutY="207.0" prefWidth="200.0" promptText="Prénom" style="-fx-background-color: #FFFFFF; -fx-border-color: #B0C4DE; -fx-border-width: 2px; -fx-border-radius: 5px;" />
+        <TextField fx:id="textFieldNom" layoutX="392.0" layoutY="170.0" prefWidth="200.0" promptText="Nom" style="-fx-background-color: #FFFFFF; -fx-border-color: #B0C4DE; -fx-border-width: 2px; -fx-border-radius: 5px;" />
+        <TextField fx:id="textFieldTel" layoutX="392.0" layoutY="285.0" prefWidth="200.0" promptText="Téléphone" style="-fx-background-color: #FFFFFF; -fx-border-color: #B0C4DE; -fx-border-width: 2px; -fx-border-radius: 5px;" />
+
+        <!-- Boutons d'action -->
+        <HBox layoutX="401.0" layoutY="353.0" spacing="10" />
+
+        <!-- Barre de recherche et boutons de tri -->
+        <HBox layoutX="661.0" layoutY="264.0" spacing="10" />
+
+        <!-- Bouton pour retourner -->
+        <Button layoutX="764.0" layoutY="458.0" mnemonicParsing="false" onAction="#Retour" prefHeight="26.0" prefWidth="107.0" style="-fx-background-color: #66a3ff;" text="Retour" textFill="#faf7f7">
+            <font>
+                <Font name="System Bold" size="12.0" />
+            </font>
+        </Button>
+          <TextField fx:id="textFieldRecherche" layoutX="770.0" layoutY="29.0" onKeyPressed="#recherchecommande" prefHeight="30.0" prefWidth="107.0" promptText="Recherche" style="-fx-background-color: #FFFFFF; -fx-border-color: #B0C4DE; -fx-border-width: 2px; -fx-border-radius: 5px " />
+          <Button layoutX="389.0" layoutY="137.0" mnemonicParsing="false" onAction="#updatecommande" prefHeight="26.0" prefWidth="107.0" style="-fx-background-color: #edf5fc;" text="Modifier" textFill="#ff9843">
+              <font>
+                  <Font name="System Bold" size="12.0" />
+              </font>
+          </Button>
+          <Button layoutX="476.0" layoutY="137.0" mnemonicParsing="false" onAction="#suppcommande" prefHeight="26.0" prefWidth="107.0" style="-fx-background-color: #edf5fc;" text="Supprimer" textFill="#ff9843">
+              <font>
+                  <Font name="System Bold" size="12.0" />
+              </font>
+          </Button>
+          <Button layoutX="680.0" layoutY="137.0" mnemonicParsing="false" onAction="#triasc" prefHeight="26.0" prefWidth="107.0" style="-fx-background-color: #edf5fc;" text="Tri croissant" textFill="#ff9843">
+              <font>
+                  <Font name="System Bold" size="12.0" />
+              </font>
+          </Button>
+          <Button layoutX="574.0" layoutY="137.0" mnemonicParsing="false" onAction="#tridesc" prefHeight="26.0" prefWidth="107.0" style="-fx-background-color: #edf5fc;" text="Tri décroissant" textFill="#ff9843">
+              <font>
+                  <Font name="System Bold" size="12.0" />
+              </font>
+          </Button>
+      <ImageView fitHeight="80.0" fitWidth="76.0" layoutX="14.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@pace-image.png" />
+         </image>
+      </ImageView>
+      <Label layoutX="392.0" layoutY="475.0" prefHeight="18.0" prefWidth="138.0" text="Merci de votre cofiance !" textFill="#ff9843" />
+      <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fitHeight="30.0" fitWidth="34.0" layoutX="740.0" layoutY="29.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@lens.png" />
+         </image>
+      </ImageView>
     </children>
 </AnchorPane>

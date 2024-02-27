@@ -9,44 +9,60 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="esprit.tn.controllers.Validercommande">
+<AnchorPane prefHeight="504.0" prefWidth="886.0" style="-fx-background-color: #edf5fc;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="esprit.tn.controllers.Validercommande">
+
     <children>
-        <AnchorPane layoutX="14.0" prefHeight="490.0" prefWidth="478.0">
-            <children>
-                <TextField fx:id="nomField" layoutX="36.0" layoutY="123.0" prefHeight="40.0" prefWidth="200.0" promptText="Nom" />
-                <TextField fx:id="prenomField" layoutX="36.0" layoutY="174.0" prefHeight="40.0" prefWidth="200.0" promptText="Prénom" />
-                <TextField fx:id="adresseField" layoutX="36.0" layoutY="233.0" prefHeight="40.0" prefWidth="200.0" promptText="Adresse" />
-                <TextField fx:id="emailField" layoutX="36.0" layoutY="349.0" prefHeight="40.0" prefWidth="200.0" promptText="E-mail@E-mail.com" />
-                <TextField fx:id="telField" layoutX="36.0" layoutY="289.0" prefHeight="40.0" prefWidth="200.0" promptText="Téléphone" />
-                <Button layoutX="36.0" layoutY="416.0" mnemonicParsing="false" onAction="#ajouter" prefHeight="30.0" prefWidth="126.0" style="-fx-background-color: #FF9843; -fx-text-fill: white;" text="Valider">
-               <font>
-                  <Font name="System Bold" size="12.0" />
-               </font>
-                </Button>
-                <Button layoutX="176.0" layoutY="416.0" mnemonicParsing="false" onAction="#Details" prefHeight="30.0" prefWidth="126.0" style="-fx-background-color: #2196F3; -fx-text-fill: white;" text="Voir les détails">
-               <font>
-                  <Font name="System Bold" size="12.0" />
-               </font>
-                </Button>
-            <ImageView fx:id="imageV" fitHeight="87.0" fitWidth="86.0" layoutX="14.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true">
+        <!-- Logo Pace Learning -->
+        <ImageView fitHeight="80.0" fitWidth="76.0" layoutX="14.0" pickOnBounds="true" preserveRatio="true">
+            <image>
                 <Image url="@pace-image.png" />
-            </ImageView>
-            <Label layoutX="99.0" layoutY="34.0" prefHeight="17.0" prefWidth="222.0" text="Pace Learning" textFill="#ff9843">
-               <font>
-                  <Font name="System Bold" size="21.0" />
-               </font>
-            </Label>
-            </children>
-        </AnchorPane>
-        <AnchorPane layoutX="521.0" layoutY="-1.0" prefHeight="490.0" prefWidth="332.0">
-            <children>
-                <ListView fx:id="tableCommandeListView" layoutX="18.0" layoutY="55.0" prefHeight="318.0" prefWidth="342.0" />
-                <Label alignment="CENTER" layoutX="13.0" layoutY="393.0" prefHeight="30.0" prefWidth="102.0" style="-fx-font-size: 20px;" text="Coût Total:">
-               <font>
-                  <Font name="System Bold" size="15.0" />
-               </font></Label>
-                <Label fx:id="totalLabel" layoutX="129.0" layoutY="393.0" prefHeight="30.0" prefWidth="102.0" style="-fx-font-size: 20px;" text="0" />
-            </children>
-        </AnchorPane>
+            </image>
+        </ImageView>
+
+        <!-- Titre Pace Learning -->
+        <Label layoutX="90.0" layoutY="21.0" text="Pace Learning" textFill="#ff9843">
+            <font>
+                <Font name="System Bold" size="21.0" />
+            </font>
+        </Label>
+
+        <!-- Champs de saisie -->
+        <ListView fx:id="tableCommandeListView" layoutX="14.0" layoutY="75.0" prefHeight="402.0" prefWidth="367.0" />
+        <TextField fx:id="nomField" layoutX="392.0" layoutY="170.0" prefWidth="200.0" promptText="Nom" style="-fx-background-color: #FFFFFF; -fx-border-color: #B0C4DE; -fx-border-width: 2px; -fx-border-radius: 5px;" />
+        <TextField fx:id="prenomField" layoutX="392.0" layoutY="207.0" prefWidth="200.0" promptText="Prénom" style="-fx-background-color: #FFFFFF; -fx-border-color: #B0C4DE; -fx-border-width: 2px; -fx-border-radius: 5px;" />
+        <TextField fx:id="adresseField" layoutX="392.0" layoutY="248.0" prefWidth="200.0" promptText="Adresse" style="-fx-background-color: #FFFFFF; -fx-border-color: #B0C4DE; -fx-border-width: 2px; -fx-border-radius: 5px;" />
+        <TextField fx:id="emailField" layoutX="392.0" layoutY="328.0" prefWidth="200.0" promptText="Email" style="-fx-background-color: #FFFFFF; -fx-border-color: #B0C4DE; -fx-border-width: 2px; -fx-border-radius: 5px;" />
+        <TextField fx:id="telField" layoutX="392.0" layoutY="285.0" prefWidth="200.0" promptText="Téléphone" style="-fx-background-color: #FFFFFF; -fx-border-color: #B0C4DE; -fx-border-width: 2px; -fx-border-radius: 5px;" />
+
+        <!-- Boutons -->
+        <Button layoutX="616.0" layoutY="237.0" mnemonicParsing="false" onAction="#ajouter" prefHeight="30.0" prefWidth="126.0" style="-fx-background-color: #66a3ff; -fx-text-fill: white;" text="Valider">
+            <font>
+                <Font name="System Bold" size="12.0" />
+            </font>
+        </Button>
+        <Button layoutX="616.0" layoutY="276.0" mnemonicParsing="false" onAction="#Details" prefHeight="30.0" prefWidth="126.0" style="-fx-background-color: #66a3ff; -fx-text-fill: white;" text="Voir les détails">
+            <font>
+                <Font name="System Bold" size="12.0" />
+            </font>
+        </Button>
+
+
+        <!-- Étiquettes pour le coût total -->
+        <Label alignment="CENTER" layoutX="381.0" layoutY="446.0" prefHeight="30.0" prefWidth="102.0" style="-fx-font-size: 20px;" text="Coût Total:">
+            <font>
+                <Font name="System Bold" size="10.0" />
+            </font>
+        </Label>
+        <Label fx:id="totalLabel" layoutX="496.0" layoutY="446.0" prefHeight="30.0" prefWidth="126.0" style="-fx-font-size: 20px;" text="0" />
+      <Label layoutX="392.0" layoutY="136.0" text="Confirmez vos détails pour finaliser votre commande." textFill="#ff9843">
+         <font>
+            <Font size="13.0" />
+         </font>
+      </Label>
+      <Label layoutX="311.0" layoutY="17.0" text="Validation de commande">
+         <font>
+            <Font size="28.0" />
+         </font>
+      </Label>
     </children>
 </AnchorPane>

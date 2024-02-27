@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="esprit.tn.controllers.Carte">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" style="-fx-background-color: #edf5fc;" fx:controller="esprit.tn.controllers.Carte">
     <children>
         <Label fx:id="productTypeFLabel" layoutX="7.0" layoutY="14.0" prefHeight="22.0" prefWidth="117.0" text="Type Formation:">
             <font>
@@ -25,8 +25,9 @@
             </font>
         </Label>
         <ImageView fx:id="productImageView" fitHeight="104.0" fitWidth="186.0" layoutX="12.0" layoutY="116.0" pickOnBounds="true" preserveRatio="true" />
+
         <Spinner fx:id="quantitySpinner" layoutX="14.0" layoutY="270.0" prefHeight="26.0" prefWidth="85.0" />
-        <Button fx:id="addButton" layoutX="112.0" layoutY="271.0" mnemonicParsing="false" onAction="#add" prefHeight="26.0" prefWidth="67.0" style="-fx-background-color: #2196F3;" text="Add" textFill="#fcfafa">
+        <Button fx:id="addButton" layoutX="112.0" layoutY="271.0" mnemonicParsing="false" onAction="#add" prefHeight="26.0" prefWidth="67.0" style="-fx-background-color: #66a3ff;" text="Add" textFill="#fcfafa">
             <font>
                 <Font name="System Bold" size="12.0" />
             </font>
