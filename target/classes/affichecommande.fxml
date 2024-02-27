@@ -79,5 +79,6 @@
             <Image url="@lens.png" />
          </image>
       </ImageView>
+      <Button layoutX="661.0" layoutY="340.0" mnemonicParsing="false" onAction="#pdf" text="telecharger" />
     </children>
 </AnchorPane>
