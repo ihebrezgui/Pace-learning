@@ -13,6 +13,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import org.apache.pdfbox.pdmodel.PDDocument;
@@ -21,6 +22,7 @@ import org.apache.pdfbox.pdmodel.PDPageContentStream;
 import org.apache.pdfbox.pdmodel.font.PDType1Font;
 
 import java.awt.*;
+import java.awt.event.ActionEvent;
 import java.io.File;
 import java.io.IOException;
 import java.sql.SQLException;
@@ -30,6 +32,8 @@ import java.util.List;
 import java.util.function.Predicate;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+import static com.sun.javafx.scene.control.skin.Utils.getResource;
 
 public class Affichecommande {
 
@@ -41,6 +45,8 @@ public class Affichecommande {
 
     @FXML
     private TextField textFieldNom;
+    @FXML
+    private Button passer;
 
     @FXML
     private TextField textFieldPrenom;
@@ -401,4 +407,30 @@ public class Affichecommande {
         }
     }
 
+
+    @FXML
+    void Passer(javafx.event.ActionEvent event) {
+        try {
+            // Charger le fichier FXML de la nouvelle vue
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/reclamation.fxml"));
+            Parent root = loader.load();
+
+            // Créer une nouvelle scène avec la nouvelle vue chargée
+            Scene scene = new Scene(root);
+
+            // Obtenir la fenêtre actuelle à partir de l'événement
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
+            // Définir la nouvelle scène dans la fenêtre
+            stage.setScene(scene);
+
+            // Montrer la nouvelle vue
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+            // Gérer l'erreur de chargement de la vue
+
+        }
+
+    }
 }

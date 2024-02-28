@@ -41,28 +41,28 @@
         <HBox layoutX="661.0" layoutY="264.0" spacing="10" />
 
         <!-- Bouton pour retourner -->
-        <Button layoutX="764.0" layoutY="458.0" mnemonicParsing="false" onAction="#Retour" prefHeight="26.0" prefWidth="107.0" style="-fx-background-color: #66a3ff;" text="Retour" textFill="#faf7f7">
+        <Button layoutX="764.0" layoutY="462.0" mnemonicParsing="false" onAction="#Retour" prefHeight="26.0" prefWidth="107.0" style="-fx-background-color: #66a3ff;" text="Retour" textFill="#faf7f7">
             <font>
                 <Font name="System Bold" size="12.0" />
             </font>
         </Button>
           <TextField fx:id="textFieldRecherche" layoutX="770.0" layoutY="29.0" onKeyPressed="#recherchecommande" prefHeight="30.0" prefWidth="107.0" promptText="Recherche" style="-fx-background-color: #FFFFFF; -fx-border-color: #B0C4DE; -fx-border-width: 2px; -fx-border-radius: 5px " />
-          <Button layoutX="389.0" layoutY="137.0" mnemonicParsing="false" onAction="#updatecommande" prefHeight="26.0" prefWidth="107.0" style="-fx-background-color: #edf5fc;" text="Modifier" textFill="#ff9843">
+          <Button layoutX="389.0" layoutY="372.0" mnemonicParsing="false" onAction="#updatecommande" prefHeight="26.0" prefWidth="107.0" style="-fx-background-color: #edf5fc;" text="Modifier" textFill="#ff9843">
               <font>
                   <Font name="System Bold" size="12.0" />
               </font>
           </Button>
-          <Button layoutX="476.0" layoutY="137.0" mnemonicParsing="false" onAction="#suppcommande" prefHeight="26.0" prefWidth="107.0" style="-fx-background-color: #edf5fc;" text="Supprimer" textFill="#ff9843">
+          <Button layoutX="492.0" layoutY="372.0" mnemonicParsing="false" onAction="#suppcommande" prefHeight="26.0" prefWidth="107.0" style="-fx-background-color: #edf5fc;" text="Supprimer" textFill="#ff9843">
               <font>
                   <Font name="System Bold" size="12.0" />
               </font>
           </Button>
-          <Button layoutX="680.0" layoutY="137.0" mnemonicParsing="false" onAction="#triasc" prefHeight="26.0" prefWidth="107.0" style="-fx-background-color: #edf5fc;" text="Tri croissant" textFill="#ff9843">
+          <Button layoutX="499.0" layoutY="137.0" mnemonicParsing="false" onAction="#triasc" prefHeight="26.0" prefWidth="107.0" style="-fx-background-color: #edf5fc;" text="Tri croissant" textFill="#ff9843">
               <font>
                   <Font name="System Bold" size="12.0" />
               </font>
           </Button>
-          <Button layoutX="574.0" layoutY="137.0" mnemonicParsing="false" onAction="#tridesc" prefHeight="26.0" prefWidth="107.0" style="-fx-background-color: #edf5fc;" text="Tri décroissant" textFill="#ff9843">
+          <Button layoutX="392.0" layoutY="137.0" mnemonicParsing="false" onAction="#tridesc" prefHeight="26.0" prefWidth="107.0" style="-fx-background-color: #edf5fc;" text="Tri décroissant" textFill="#ff9843">
               <font>
                   <Font name="System Bold" size="12.0" />
               </font>
@@ -79,6 +79,10 @@
             <Image url="@lens.png" />
          </image>
       </ImageView>
-      <Button layoutX="661.0" layoutY="340.0" mnemonicParsing="false" onAction="#pdf" text="telecharger" />
+      <Button layoutX="631.0" layoutY="250.0" mnemonicParsing="false" onAction="#pdf" style="-fx-background-color: #66a3ff;" text="Télècharger PDF" textFill="#fafafa">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></Button>
+      <Button fx:id="passer" layoutX="703.0" layoutY="112.0" mnemonicParsing="false" onAction="#Passer" style="-fx-background-color: #66a3ff;"  text="Reclamation" textFill="#fafafa" />
     </children>
 </AnchorPane>

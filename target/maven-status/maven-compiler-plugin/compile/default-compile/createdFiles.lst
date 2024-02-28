@@ -1,4 +1,6 @@
 esprit\tn\models\Formation.class
+esprit\tn\controllers\Reclamation.class
+esprit\tn\controllers\Reclamation$1.class
 esprit\tn\controllers\CodeQR.class
 esprit\tn\Cellule\PanierCell.class
 esprit\tn\Cellule\CommandeCell.class
