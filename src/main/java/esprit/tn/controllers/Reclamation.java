@@ -3,6 +3,7 @@ import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
@@ -105,5 +106,30 @@ public class Reclamation extends Application {
 
     public static void main(String[] args) {
         launch(args);
+    }
+
+    @FXML
+    void retour(javafx.event.ActionEvent event) {
+        try {
+            // Charger le fichier FXML de la nouvelle vue
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/affichecommande.fxml"));
+            Parent root = loader.load();
+
+            // Créer une nouvelle scène avec la nouvelle vue chargée
+            Scene scene = new Scene(root);
+
+            // Obtenir la fenêtre actuelle à partir de l'événement
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
+            // Définir la nouvelle scène dans la fenêtre
+            stage.setScene(scene);
+
+            // Montrer la nouvelle vue
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+            // Gérer l'erreur de chargement de la vue
+
+        }
     }
 }

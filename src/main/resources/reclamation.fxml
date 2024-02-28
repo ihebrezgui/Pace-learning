@@ -4,6 +4,8 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 
 <AnchorPane prefHeight="504.0" prefWidth="886.0" style="-fx-background-color: #edf5fc;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="esprit.tn.controllers.Reclamation">
@@ -12,11 +14,19 @@
         <TextArea fx:id="messageArea" layoutX="14.0" layoutY="34.0" prefHeight="200.0" prefWidth="572.0" style="-fx-background-color: #FFFFFF; -fx-border-color: #B0C4DE; -fx-border-width: 2px; -fx-border-radius: 5px;" />
 
         <Label layoutX="14.0" layoutY="244.0" text="Sujet:" />
-        <TextField fx:id="subjectField" layoutX="14.0" layoutY="264.0" prefHeight="26.0" prefWidth="572.0" style="-fx-background-color: #FFFFFF; -fx-border-color: #B0C4DE; -fx-border-width: 2px; -fx-border-radius: 5px;"/>
+        <TextField fx:id="subjectField" layoutX="14.0" layoutY="264.0" prefHeight="26.0" prefWidth="572.0" style="-fx-background-color: #FFFFFF; -fx-border-color: #B0C4DE; -fx-border-width: 2px; -fx-border-radius: 5px;" />
 
         <Label layoutX="14.0" layoutY="304.0" text="Destinataire:" />
-        <TextField fx:id="toField" layoutX="14.0" layoutY="324.0" prefHeight="26.0" prefWidth="572.0" text="rezguiiheb06@gmail.com" style="-fx-background-color: #FFFFFF; -fx-border-color: #B0C4DE; -fx-border-width: 2px; -fx-border-radius: 5px;"/>
+        <TextField fx:id="toField" layoutX="14.0" layoutY="324.0" prefHeight="26.0" prefWidth="572.0" style="-fx-background-color: #FFFFFF; -fx-border-color: #B0C4DE; -fx-border-width: 2px; -fx-border-radius: 5px;" text="pacelearningresp@gmail.com" />
 
         <Button fx:id="sendButton" layoutX="14.0" layoutY="364.0" mnemonicParsing="false" onAction="#sendEmail" prefHeight="26.0" prefWidth="572.0" style="-fx-background-color: #66a3ff;" text="Envoyer" />
+        <Button layoutX="806.0" layoutY="453.0" mnemonicParsing="false" onAction="#retour" text="Retour">
+
+        </Button>
+        <ImageView fitHeight="30.0" fitWidth="86.0" layoutX="328.0" layoutY="362.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@mail.png" />
+         </image>
+      </ImageView>
     </children>
 </AnchorPane>
