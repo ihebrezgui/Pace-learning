@@ -27,32 +27,76 @@ public class AjouterPlanning {
 
     @FXML
     void ajouterPlanning(ActionEvent event) {
+        // Validate input for event ID
+        if (!isValidId(idFX.getText())) {
+            showAlert("Erreur", "ID d'événement invalide. Veuillez saisir un nombre entier positif.");
+            return;
+        }
+
+        // Validate input for planning title
+        if (!isValidText(titreTF.getText())) {
+            showAlert("Erreur", "Titre de planning invalide. Veuillez saisir un texte non vide.");
+            return;
+        }
+
+        // Validate input for planning lieu
+        if (!isValidText(lieuTF.getText())) {
+            showAlert("Erreur", "Lieu de planning invalide. Veuillez saisir un texte non vide.");
+            return;
+        }
+
+        // Validate input for planning date
+        if (!isValidDate(dateFX.getText())) {
+            showAlert("Erreur", "Format de date invalide. Utilisez le format YYYY-MM-DD.");
+            return;
+        }
+
+        // All input is valid, proceed to add the planning
         PlanningService planningService = new PlanningService();
-        Planning planning = new Planning () ;
+        Planning planning = new Planning();
         planning.setId_event(Integer.parseInt(idFX.getText()));
         planning.setTitre(titreTF.getText());
         planning.setLieu(lieuTF.getText());
         planning.setDate(Date.valueOf(dateFX.getText()));
 
-
-
         try {
             planningService.ajouter(planning);
-            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-            alert.setTitle("Success");
-            alert.setContentText("Planning ajoutée");
-            alert.showAndWait();
+            showAlert("Success", "Planning ajouté");
         } catch (SQLException e) {
-            Alert alert = new Alert (Alert.AlertType.ERROR);
-            alert.setTitle("Erreur");
-            alert.setContentText(e.getMessage());
-            alert.showAndWait();
+            showAlert("Erreur", e.getMessage());
         }
     }
 
-    @FXML
-    void initialize() {
+    private boolean isValidId(String id) {
+        try {
+            int eventId = Integer.parseInt(id);
+            return eventId > 0;
+        } catch (NumberFormatException e) {
+            return false;
+        }
+    }
+
+    private boolean isValidText(String text) {
+        return !text.trim().isEmpty();
+    }
+
+    private boolean isValidDate(String date) {
+        try {
+            Date.valueOf(date);
+            return true;
+        } catch (IllegalArgumentException e) {
+            return false;
+        }
+    }
+
+    private void showAlert(String title, String content) {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle(title);
+        alert.setContentText(content);
+        alert.showAndWait();
+    }
 
     }
 
-}
+
+
