@@ -1,6 +1,6 @@
 package tn.esprit.devformation.services;
 import tn.esprit.devformation.models.Cours;
-import tn.esprit.devformation.models.Formation;
+
 import tn.esprit.devformation.utils.MyDataBase;
 
 import java.sql.*;
@@ -55,10 +55,11 @@ public class CoursService implements  Iservice <Cours>{
         }
     }
 
+
     @Override
     public List<Cours> getAll() {
         List<Cours> L = new ArrayList<>();
-        String req = "SELECT * FROM `cours`";
+        String req = "SELECT c.*, f.* FROM cours c JOIN formation f ON c.idFormation = f.idFormation";
         try {
             Statement st = connection.createStatement();
             ResultSet res= st.executeQuery(req);
@@ -80,30 +81,11 @@ public class CoursService implements  Iservice <Cours>{
 
         return L;
     }
-    //SortByPrice
-    public void sortByPrice(List<Cours> cours) {
-        cours.sort(Comparator.comparingDouble(Cours::getPrix));
-
-        // Print the sorted list of courses
-        System.out.println("Sorted Courses by Price:");
-        for (Cours Cours : cours) {
-            System.out.println(Cours);
-        }
-    }
-    //Sort By Categorie
-    public void sortByCategorie(List<Cours> cours) {
-        cours.sort(Comparator.comparing(Cours::getCategorie));
-
-        // Print the sorted list of courses
-        System.out.println("Sorted Courses by Categorie:");
-        for (Cours Cours : cours) {
-            System.out.println(Cours);
-        }
-    }
 
     public ArrayList<Cours> search(String searchTerm) {
         ArrayList<Cours> searchResults = new ArrayList<>();
-        String query = "SELECT * FROM `cours` WHERE `nomCours` = '" + searchTerm + "' OR `categorie` = '" + searchTerm + "' OR `description` LIKE '%" + searchTerm + "%'";
+        String query = "SELECT c.*, f.* FROM cours c JOIN formation f ON c.idFormation = f.idFormation WHERE c.nomCours = '" + searchTerm + "' OR c.categorie = '" + searchTerm + "' OR c.description LIKE '%" + searchTerm + "%'";
+
         try {
             Statement st = connection.createStatement();
             ResultSet res = st.executeQuery(query);
@@ -125,8 +107,7 @@ public class CoursService implements  Iservice <Cours>{
             System.out.println("No courses found for the search term: " + searchTerm);
         }
         return searchResults;
-    }
-    public void setConnection(Connection connection) {
+    } void setConnection(Connection connection) {
         this.connection = connection;
     }
 }

@@ -1,8 +1,10 @@
 package esprit.tn.formation.controllers;
 
+import esprit.tn.formation.HelloApplication;
 import esprit.tn.formation.models.Cours;
 import esprit.tn.formation.models.Formation;
 import esprit.tn.formation.services.CoursService;
+import esprit.tn.formation.services.FormationService;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -10,12 +12,10 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.ListView;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
+import org.controlsfx.control.tableview2.filter.filtereditor.SouthFilter;
 
 import java.io.IOException;
 import java.util.List;
@@ -37,6 +37,8 @@ public class ListCours {
             List<Cours> searchResults = cs.search(newValue);
             refreshListView(searchResults);
         });
+        // Set custom cell factory
+        listView.setCellFactory(list -> new CoursList());
     }
 
     @FXML
@@ -68,27 +70,52 @@ public class ListCours {
 
     @FXML
     void delete(ActionEvent event) {
-        try {
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/esprit/tn/formation/DeleteCours.fxml"));
-            Parent root = fxmlLoader.load();
-            Stage stage = new Stage();
-            stage.setScene(new Scene(root));
-            stage.show();
-        } catch (IOException e) {
-            e.printStackTrace();
+        CoursService Fs = new CoursService();
+        boolean b = listView.getItems().removeAll(listView.getSelectionModel().getSelectedItem());
+        if(b)
+        {
+            try {
+                int id = listView.getSelectionModel().getSelectedItem().getIdCours();
+                Fs.delete(id);
+                Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+                alert.setTitle("Success");
+                alert.setContentText("Course deleted");
+                alert.showAndWait();
+            } catch (Exception e) {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Error");
+                alert.setContentText(e.getMessage());
+                alert.showAndWait();
+                System.err.println((e.getMessage()));
+                throw new RuntimeException(e);
+            }
         }
     }
 
     @FXML
     void update(ActionEvent event) {
-        try {
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/esprit/tn/formation/UpdateCours.fxml"));
-            Parent root = fxmlLoader.load();
-            Stage stage = new Stage();
-            stage.setScene(new Scene(root));
-            stage.show();
-        } catch (IOException e) {
-            e.printStackTrace();
+        Cours selectedFormation = listView.getSelectionModel().getSelectedItem();
+        if (selectedFormation != null) {
+            try {
+                System.out.println(selectedFormation.getIdCours());
+                FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("/esprit/tn/formation/UpdateCours.fxml"));
+                Parent root = fxmlLoader.load();
+                UpdateCours updateFormationController = fxmlLoader.getController();
+                updateFormationController.initializeData(selectedFormation.getIdCours());
+                listView.getScene().setRoot(root);
+            } catch (IOException e) {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Error");
+                alert.setContentText(e.getMessage());
+                alert.showAndWait();
+                System.err.println((e.getMessage()));
+                throw new RuntimeException(e);
+            }
+        } else {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setContentText("Please select a formation to update");
+            alert.showAndWait();
         }
     }
 

@@ -10,7 +10,5 @@ public interface Iservice <T>{
     void update(T t);
     void delete(int id);
     List<T> getAll();
-    void sortByCategorie(List<T> list);
-    void sortByPrice(List<T> list);
     public ArrayList<T> search(String searchTerm);
 }

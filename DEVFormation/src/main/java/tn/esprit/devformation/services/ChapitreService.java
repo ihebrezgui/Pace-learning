@@ -1,8 +1,7 @@
 package tn.esprit.devformation.services;
-import tn.esprit.devformation.models.Cours;
-import tn.esprit.devformation.models.Formation;
 import tn.esprit.devformation.utils.MyDataBase;
 import tn.esprit.devformation.models.Chapitre;
+
 import java.sql.Connection;
 
 import java.sql.*;
@@ -55,7 +54,8 @@ public class ChapitreService implements Iservice<Chapitre> {
     @Override
     public List<Chapitre> getAll() {
         List<Chapitre> chapitres = new ArrayList<>();
-        String req = "SELECT * FROM `chapitre`";
+        String req ="SELECT c.*, ch.* FROM chapitre ch JOIN cours c ON ch.idCours = c.idCours";
+
         try {
             PreparedStatement st = connection.prepareStatement(req);
             ResultSet rs = st.executeQuery();
@@ -75,19 +75,8 @@ public class ChapitreService implements Iservice<Chapitre> {
     }
 
     @Override
-    public void sortByCategorie(List<Chapitre> list) {
-            list.sort(Comparator.comparing(Chapitre::getDescription));
-            System.out.println("Sorted Chaptres by Category:");
-            for (Chapitre chapitre : list) {
-                System.out.println(chapitre);
-            }
-    }
-
-    @Override
-    public void sortByPrice(List<Chapitre> list) {
-
-    }
-    public ArrayList<Chapitre> search(String searchTerm){
+    public ArrayList<Chapitre> search(String searchTerm) {
         return null;
     }
+
 }

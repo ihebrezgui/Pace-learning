@@ -6,20 +6,41 @@ public class Formation {
     private int idFormation;
     private String typeF;
     private String img;
+    private Float prix;
+    private String duree;
+    private String status;
+
+
+    public Formation(String typeF, String img, Float prix, String duree,String status) {
+        this.typeF = typeF;
+        this.img = img;
+        this.prix = prix;
+        this.duree = duree;
+        this.status = status;
+    }
+
+    public Formation(int idFormation, String typeF, String img, Float prix, String duree,String status) {
+        this.idFormation = idFormation;
+        this.typeF = typeF;
+        this.img = img;
+        this.prix = prix;
+        this.duree = duree;
+        this.status = status;
+    }
+
+
 
     public Formation() {
     }
 
     ;
 
-    public Formation(int idFormation, String typeF, String img) {
-        this.idFormation = idFormation;
-        this.typeF = typeF;
-        this.img = img;
+    public String getStatus() {
+        return status;
     }
-    public Formation(String typeF, String img) {
-        this.typeF = typeF;
-        this.img = img;
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 
     public Formation(String typeF) {
@@ -51,18 +72,20 @@ public class Formation {
     public void setImg(String img) {
         this.img = img;
     }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Formation formation = (Formation) o;
-        return idFormation == formation.idFormation && Objects.equals(typeF, formation.typeF) && Objects.equals(img, formation.img);
+    public Float getPrix() {
+        return prix;
     }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(idFormation, typeF, img);
+    public void setPrix(Float prix) {
+        this.prix = prix;
+    }
+
+    public String getDuree() {
+        return duree;
+    }
+
+    public void setDuree(String duree) {
+        this.duree = duree;
     }
 
     @Override
@@ -71,6 +94,9 @@ public class Formation {
                 "idFormation=" + idFormation +
                 ", typeF='" + typeF + '\'' +
                 ", img='" + img + '\'' +
+                ", prix=" + prix +
+                ", duree='" + duree + '\'' +
+                ", status='" + status + '\'' +
                 '}';
     }
 }

@@ -1,25 +1,29 @@
 package esprit.tn.formation.controllers;
 
+
 import esprit.tn.formation.HelloApplication;
 import esprit.tn.formation.models.Cours;
+import esprit.tn.formation.models.Formation;
 import esprit.tn.formation.services.CoursService;
+import esprit.tn.formation.services.FormationService;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
+import org.controlsfx.control.tableview2.filter.filtereditor.SouthFilter;
 
 import java.io.IOException;
 import java.util.List;
 
 public class UpdateCours {
 
-    @FXML
-    private TextField tabI;
+
     @FXML
     private TextField tabF;
-
+    @FXML
+    private TextField tabI;
     @FXML
     private TextField tabC;
     @FXML
@@ -29,7 +33,24 @@ public class UpdateCours {
     @FXML
     private TextField tabP;
 
+    private int selectedCoursId;
 
+    public void initializeData(int CoursId) {
+        this.selectedCoursId = CoursId;
+        // Fetch the formation details based on the ID and populate the fields for updating
+        CoursService CoursService = new CoursService();
+        Cours cours = CoursService.searchidF(CoursId);
+        if (cours != null) {
+            tabI.setText(String.valueOf(cours.getIdCours()));
+            tabN.setText(cours.getNomC());
+            tabD.setText(cours.getDescription());
+            tabC.setText(cours.getCategorie());
+            tabP.setText(String.valueOf(cours.getPrix()));
+            tabF.setText(String.valueOf(cours.getIdFormation()));
+        } else {
+            showAlert("Error", "Course not found.");
+        }
+    }
     @FXML
     private void update() {
         try {
@@ -40,22 +61,17 @@ public class UpdateCours {
 
             CoursService Fs = new CoursService();
             Cours F = new Cours();
-            F.setIdCours(Integer.parseInt(tabI.getText()));
+            F.setIdCours(selectedCoursId);
             F.setIdFormation(Integer.parseInt(tabF.getText()));
             F.setNomC(tabN.getText());
             F.setDescription(tabD.getText());
             F.setCategorie(tabC.getText());
             F.setPrix(Float.parseFloat(tabP.getText()));
-
             Fs.update(F);
-
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
             alert.setTitle("Success");
             alert.setContentText("Cours updated");
             alert.showAndWait();
-
-            FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("/esprit/tn/formation/ListCours.fxml"));
-            tabI.getScene().setRoot(fxmlLoader.load());
         } catch (NumberFormatException e) {
             showAlert("Error", "Please enter valid numeric values for IdCours, IdFormation, and Prix.");
         } catch (Exception e) {
@@ -66,17 +82,15 @@ public class UpdateCours {
     }
 
     private boolean validateInput() {
-        String idCoursText = tabI.getText().trim();
         String idFormationText = tabF.getText().trim();
         String prixText = tabP.getText().trim();
 
-        if (idCoursText.isEmpty() || idFormationText.isEmpty() || prixText.isEmpty()) {
+        if ( idFormationText.isEmpty() || prixText.isEmpty()) {
             showAlert("Error", "All fields must be filled out.");
             return false;
         }
 
         try {
-            Integer.parseInt(idCoursText);
             Integer.parseInt(idFormationText);
             Float.parseFloat(prixText);
             return true;
@@ -110,8 +124,6 @@ public class UpdateCours {
 
     // Method to navigate back to the list of Courss
     @FXML
-
-
     public void getAll() {
         try {
             CoursService Fs = new CoursService();

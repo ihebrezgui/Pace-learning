@@ -84,15 +84,7 @@ public class FormationService implements Iservice<Formation> {
 
         return L;
     }
-    public void sortByPrice(List<Formation> formations){}
-    //SortByType
-    public void sortByCategorie(List<Formation> formations) {
-        formations.sort(Comparator.comparing(Formation::getTypeF));
-        System.out.println("Sorted Formations:");
-        for (Formation formation : formations) {
-            System.out.println(formation);
-        }
-    }
+
     //seqrch per type
     public ArrayList<Formation> search(String searchTerm) {
         ArrayList<Formation> searchResults = new ArrayList<>();

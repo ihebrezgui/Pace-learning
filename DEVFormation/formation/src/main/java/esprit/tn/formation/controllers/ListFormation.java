@@ -1,6 +1,8 @@
 package esprit.tn.formation.controllers;
 
+import esprit.tn.formation.HelloApplication;
 import esprit.tn.formation.models.Formation;
+import esprit.tn.formation.services.CoursService;
 import esprit.tn.formation.services.FormationService;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -9,6 +11,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
@@ -69,7 +72,11 @@ public class ListFormation {
                     }
 
                     // Display the formation name
-                    setText(formation.getTypeF());
+                   // setText(formation.getTypeF());
+                    setText( " "+formation.getTypeF() + "                      " +
+                            " " + String.valueOf(formation.getPrix())+ " TND                      " +
+                            " " + formation.getDuree() + "                      " +
+                            " " + formation.getStatus()) ;
                 }
             }
         });
@@ -83,7 +90,7 @@ public class ListFormation {
     @FXML
     void sort(ActionEvent event) {
         List<Formation> formations = formationService.getAll();
-        formationService.sortByCategorie(formations);
+        formationService.sortByPrice(formations);
         refreshListView(formations);
     }
 
@@ -96,8 +103,35 @@ public class ListFormation {
 
     @FXML
     void update(ActionEvent event) {
+        Formation selectedFormation = listView.getSelectionModel().getSelectedItem();
+        if (selectedFormation != null) {
+            try {
+                FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("/esprit/tn/formation/UpdateFormation.fxml"));
+                Parent root = fxmlLoader.load();
+                UpdateFormation updateFormationController = fxmlLoader.getController();
+                updateFormationController.initializeData(selectedFormation.getIdFormation());
+                listView.getScene().setRoot(root);
+            } catch (IOException e) {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Error");
+                alert.setContentText(e.getMessage());
+                alert.showAndWait();
+                System.err.println((e.getMessage()));
+                throw new RuntimeException(e);
+            }
+        } else {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setContentText("Please select a formation to update");
+            alert.showAndWait();
+        }
+    }
+
+
+    @FXML
+    void add(ActionEvent event) {
         try {
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/esprit/tn/formation/UpdateFormation.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/esprit/tn/formation/AddFormation.fxml"));
             Parent root = fxmlLoader.load();
             Stage stage = new Stage();
             stage.setScene(new Scene(root));
@@ -106,10 +140,7 @@ public class ListFormation {
             e.printStackTrace();
         }
     }
-
-    @FXML
-    void delete(ActionEvent event) {
-        try {
+    /*try {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/esprit/tn/formation/DeleteFormation.fxml"));
             Parent root = fxmlLoader.load();
             Stage stage = new Stage();
@@ -117,8 +148,62 @@ public class ListFormation {
             stage.show();
         } catch (IOException e) {
             e.printStackTrace();
+        }*/
+    @FXML
+    void delete(ActionEvent event) {
+
+        FormationService Fs = new FormationService();
+        boolean b = listView.getItems().removeAll(listView.getSelectionModel().getSelectedItem());
+        if(b) {
+            try {
+                int id = listView.getSelectionModel().getSelectedItem().getIdFormation();
+                Fs.delete(id);
+                Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+                alert.setTitle("Success");
+                alert.setContentText("Formation deleted");
+                alert.showAndWait();
+            } catch (Exception e) {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Error");
+                alert.setContentText(e.getMessage());
+                alert.showAndWait();
+                System.err.println((e.getMessage()));
+                throw new RuntimeException(e);
+            }
         }
     }
+    @FXML
+    void PassQuiz(ActionEvent event) {
+        Formation selectedFormation = listView.getSelectionModel().getSelectedItem();
+        if (selectedFormation != null) {
+            try {
+                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/esprit/tn/formation/quiz.fxml"));
+                Parent root = fxmlLoader.load();
+                QuizController quizController = fxmlLoader.getController();
+                quizController.initialize(selectedFormation);
+
+                // Obtenez la scène à partir de n'importe quel élément de la fenêtre actuelle
+                Scene scene = listView.getScene();
+
+                // Changez la racine de la scène actuelle
+                scene.setRoot(root);
+            } catch (IOException e) {
+                // Gérer les exceptions d'E/S lors du chargement du fichier FXML
+                e.printStackTrace();
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Error");
+                alert.setContentText("Failed to load quiz page");
+                alert.showAndWait();
+            }
+        } else {
+            // Affichez une alerte si aucune formation n'est sélectionnée
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setContentText("Please select a formation to pass the quiz");
+            alert.showAndWait();
+        }
+    }
+
 
     public void refreshList() {
         List<Formation> formations = formationService.getAll();
