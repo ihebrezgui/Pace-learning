@@ -29,11 +29,9 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
-import java.util.function.Predicate;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import static com.sun.javafx.scene.control.skin.Utils.getResource;
 
 public class Affichecommande {
     @FXML

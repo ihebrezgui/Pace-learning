@@ -59,6 +59,31 @@ public class Validercommande {
     public Validercommande() {
         connection = MaConnexion.getInstance().getCnx();
     }
+
+
+    @FXML
+    void Retour(javafx.event.ActionEvent event) {
+        try {
+            // Charger le fichier FXML de la nouvelle vue
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/afficherpanier.fxml"));
+            Parent root = loader.load();
+
+            // Créer une nouvelle scène avec la nouvelle vue chargée
+            Scene scene = new Scene(root);
+
+            // Obtenir la fenêtre actuelle à partir de l'événement
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
+            // Définir la nouvelle scène dans la fenêtre
+            stage.setScene(scene);
+
+            // Montrer la nouvelle vue
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+            // Gérer l'erreur de chargement de la vue
+        }
+    }
     @FXML
     void Details(javafx.event.ActionEvent  event) {
         try {
