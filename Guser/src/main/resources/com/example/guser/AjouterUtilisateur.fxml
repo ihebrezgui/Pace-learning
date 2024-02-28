@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.ColorAdjust?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #edf5fc;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.guser.controller.AjouterUtilisateur">
+   <children>
+      <Label layoutX="227.0" layoutY="31.0" text="Inscription" textAlignment="CENTER" textFill="#3468c0">
+         <font>
+            <Font name="Georgia Pro" size="30.0" />
+         </font>
+      </Label>
+      <TextField fx:id="nomTF" layoutX="129.0" layoutY="103.0" promptText="Nom" />
+      <TextField fx:id="prenomTF" layoutX="327.0" layoutY="103.0" promptText="Prenom" />
+      <TextField fx:id="date_naisTF" layoutX="226.0" layoutY="142.0" promptText="Date de naissance" />
+      <TextField fx:id="num_telTF" layoutX="227.0" layoutY="188.0" promptText="Numéro de téléphone" />
+      <TextField fx:id="emailTF" layoutX="227.0" layoutY="232.0" promptText="E-mail" />
+      <TextField fx:id="sexeTF" layoutX="227.0" layoutY="272.0" promptText="Sexe" />
+      <Button layoutX="31.0" layoutY="327.0" mnemonicParsing="false" onAction="#ajouterUtilisateur" prefHeight="25.0" prefWidth="110.0" style="-fx-background-color: #66a3ff;" text="Ajouter" textAlignment="CENTER" textFill="WHITE" textOverrun="LEADING_ELLIPSIS">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font></Button>
+      <Button layoutX="172.0" layoutY="327.0" mnemonicParsing="false" onAction="#afficherUtilisateur" prefHeight="25.0" prefWidth="110.0" style="-fx-background-color: #66a3ff;" text="Afficher" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font></Button>
+      <ImageView fitHeight="110.0" fitWidth="133.0" layoutX="4.0" layoutY="2.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../../../../../../../OneDrive/Desktop/logo.png" />
+         </image>
+      </ImageView>
+
+   </children>
+   <opaqueInsets>
+      <Insets />
+   </opaqueInsets>
+   <effect>
+      <ColorAdjust brightness="0.14" />
+   </effect>
+</AnchorPane>

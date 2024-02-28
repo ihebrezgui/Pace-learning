@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #edf5fc;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.guser.controller.AjouterCode">
+   <children>
+      <Text fill="#f58413" layoutX="165.0" layoutY="58.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ajouter Code Promo">
+         <font>
+            <Font name="Georgia Pro" size="30.0" />
+         </font>
+      </Text>
+      <TextField fx:id="codeTF" layoutX="226.0" layoutY="116.0" promptText="Code" />
+      <TextField fx:id="date_expirationTF" layoutX="226.0" layoutY="165.0" promptText="Date d'expiration" />
+      <TextField fx:id="activeTF" layoutX="226.0" layoutY="216.0" promptText="Active" />
+      <TextField fx:id="idUserTF" layoutX="226.0" layoutY="280.0" promptText="ID User" />
+      <Button layoutX="37.0" layoutY="335.0" mnemonicParsing="false" onAction="#ajouterCode" prefHeight="25.0" prefWidth="114.0" style="-fx-background-color: #66a3ff;" text="Ajouter" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font></Button>
+      <Button layoutX="186.0" layoutY="335.0" mnemonicParsing="false" onAction="#afficherCode" prefHeight="25.0" prefWidth="114.0" style="-fx-background-color: #66a3ff;" text="Afficher" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font></Button>
+      <ImageView fitHeight="102.0" fitWidth="126.0" layoutX="37.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@/logo.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="113.0" fitWidth="139.0" layoutX="14.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../../../../../../../OneDrive/Desktop/logo.png" />
+         </image>
+      </ImageView>
+   </children>
+</AnchorPane>
