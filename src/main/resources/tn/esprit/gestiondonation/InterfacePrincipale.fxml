@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #F0F8FF;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.esprit.gestiondonation.controllers.InterfacePrincipale">
+   <children>
+      <Label layoutX="102.0" layoutY="38.0" text="P" textFill="#ff6d0c">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <Label layoutX="111.0" layoutY="38.0" text="aceLearning" textFill="#3b74c9">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <ImageView fitHeight="56.0" fitWidth="59.0" layoutX="37.0" layoutY="22.0">
+         <image>
+            <Image url="@LOGO.png" />
+         </image>
+      </ImageView>
+      <Button layoutX="88.0" layoutY="296.0" mnemonicParsing="false" onAction="#giveAction" prefHeight="50.0" prefWidth="196.0" style="-fx-background-color: #3b74c9;" text="Faire une donation" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Button>
+      <Button layoutX="317.0" layoutY="296.0" mnemonicParsing="false" onAction="#requestAction" prefHeight="50.0" prefWidth="196.0" style="-fx-background-color: #3b74c9;" text="Demander une donation" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Button>
+      <ImageView fitHeight="212.0" fitWidth="228.0" layoutX="186.0" layoutY="78.0">
+         <image>
+            <Image url="@Charity-cuate.png" />
+         </image>
+      </ImageView>
+   </children>
+</AnchorPane>
