@@ -70,11 +70,11 @@ public class partnerships {
 
     @Override
     public String toString() {
-        return "partnerships{" +
-                "idP=" + idP +
-                ", choix=" + choix +
-                ", nomp_p='" + nom_p + '\'' +
-                ", domaine='" + domaine + '\'' +
+        return "    " +
+                "-" + idP +
+                "|         " + choix +
+                "         " + nom_p + '\'' +
+                "         " + domaine + '\'' +
                 '}';
     }
 }

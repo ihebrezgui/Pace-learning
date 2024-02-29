@@ -14,15 +14,15 @@ public class enseignant {
 
     @Override
     public String toString() {
-        return "enseignant{" +
-                "idE=" + idE +
-                ", age=" + age +
-                ", email=" + email +
-                ", matier=" + matier +
-                ", nom=" + nom +
-                ", prenom=" + prenom +
-                ", comptences=" + comptences +
-                ", langue=" + langue +
+        return "    " +
+                "-" + idE +
+                "|         " + age +
+                "         " + email +
+                "         " + matier +
+                "         " + nom +
+                "         " + prenom +
+                "         " + comptences +
+                "         " + langue +
                 '}';
     }
 

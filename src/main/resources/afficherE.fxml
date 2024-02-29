@@ -12,7 +12,16 @@
    <children>
       <AnchorPane layoutX="10.0" layoutY="10.0" prefHeight="635.0" prefWidth="944.0">
          <children>
-            <ListView id="formationListView" fx:id="EnseignantListView" layoutX="342.0" layoutY="14.0" prefHeight="278.0" prefWidth="602.0" stylesheets="@../../../../../../Downloads/study_land%20(5)/study_land/src/main/resources/styles.css" />
+            <ImageView fitHeight="59.0" fitWidth="610.0" layoutX="337.0" layoutY="-3.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@bar.png" />
+               </image>
+            </ImageView>
+            <ListView id="formationListView" fx:id="EnseignantListView" layoutX="342.0" layoutY="41.0" prefHeight="278.0" prefWidth="602.0">
+               <stylesheets>
+                  <URL value="@../../../../../Downloads/study_land%20(5)/study_land/src/main/resources/styles.css" />
+                  <URL value="@styles.css" />
+               </stylesheets></ListView>
             <Button layoutX="549.0" layoutY="406.0" mnemonicParsing="false" onAction="#AfficherDB" prefHeight="26.0" prefWidth="94.0" text="AfficherDB">
                <stylesheets>
                   <URL value="@../../../../../Downloads/study_land%20(5)/study_land/src/main/resources/styles.css" />
@@ -31,7 +40,7 @@
                   <URL value="@styles.css" />
                </stylesheets>
             </Button>
-            <ImageView fitHeight="616.0" fitWidth="324.0" layoutY="6.0" pickOnBounds="true">
+            <ImageView fitHeight="563.0" fitWidth="324.0" layoutY="6.0" pickOnBounds="true">
                <image>
                   <Image url="@pngtree-teacher-with-student-png-image_6877693.png" />
                </image>
@@ -42,6 +51,14 @@
                </image>
             </ImageView>
             <Label fx:id="next" layoutX="431.0" layoutY="497.0" stylesheets="@../../../../../../Downloads/study_land%20(5)/study_land/src/main/resources/styles.css" text=" " />
+            <Button fx:id="BACKAJOUTE" layoutX="105.0" layoutY="582.0" mnemonicParsing="false" onAction="#BACKAJOUTE" prefHeight="21.0" prefWidth="94.0" text="&lt;--">
+               <stylesheets>
+                  <URL value="@../../../../../Downloads/study_land%20(5)/study_land/src/main/resources/styles.css" />
+                  <URL value="@styles.css" />
+               </stylesheets>
+            </Button>
+            <Label fx:id="next1" layoutX="394.0" layoutY="525.0" />
+            <Label fx:id="next2" layoutX="366.0" layoutY="586.0" />
          </children>
       </AnchorPane>
    </children>

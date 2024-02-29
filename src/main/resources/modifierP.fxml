@@ -8,62 +8,76 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.Partnerships">
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.ModifierP">
    <children>
-      <AnchorPane layoutX="10.0" layoutY="10.0" prefHeight="557.0" prefWidth="802.0">
+      <AnchorPane layoutX="20.0" layoutY="20.0" prefHeight="557.0" prefWidth="802.0">
          <children>
-            <Label layoutX="335.0" layoutY="21.0" prefHeight="21.0" prefWidth="126.0" text="Nom Partnership">
+            <Label layoutX="340.0" layoutY="72.0" prefHeight="21.0" prefWidth="126.0" text="Nom Partnership">
                <stylesheets>
                   <URL value="@../../../../../Downloads/study_land%20(5)/study_land/src/main/resources/styles.css" />
                   <URL value="@styles.css" />
-               </stylesheets></Label>
-            <TextField fx:id="NomP" layoutX="475.0" layoutY="17.0">
+               </stylesheets>
+            </Label>
+            <TextField fx:id="NomP" layoutX="480.0" layoutY="68.0">
                <stylesheets>
                   <URL value="@../../../../../Downloads/study_land%20(5)/study_land/src/main/resources/styles.css" />
                   <URL value="@styles.css" />
-               </stylesheets></TextField>
-            <Button layoutX="671.0" layoutY="103.0" mnemonicParsing="false" onAction="#AjouterP" prefHeight="29.0" prefWidth="71.0" text="Ajouter">
+               </stylesheets>
+            </TextField>
+            <Button layoutX="669.0" layoutY="186.0" mnemonicParsing="false" onAction="#modifierP" prefHeight="29.0" prefWidth="71.0" text="Modifier">
                <stylesheets>
                   <URL value="@../../../../../Downloads/study_land%20(5)/study_land/src/main/resources/styles.css" />
                   <URL value="@styles.css" />
-               </stylesheets></Button>
+               </stylesheets>
+            </Button>
             <ImageView fitHeight="557.0" fitWidth="295.0" pickOnBounds="true">
                <image>
                   <Image url="@Categorie.jpg" />
                </image>
             </ImageView>
-            <Label layoutX="335.0" layoutY="60.0" prefHeight="21.0" prefWidth="126.0" text="domaine">
+            <Label layoutX="340.0" layoutY="111.0" prefHeight="21.0" prefWidth="126.0" text="domaine">
                <stylesheets>
                   <URL value="@../../../../../Downloads/study_land%20(5)/study_land/src/main/resources/styles.css" />
                   <URL value="@styles.css" />
-               </stylesheets></Label>
-            <TextField fx:id="domaine" layoutX="475.0" layoutY="57.0">
+               </stylesheets>
+            </Label>
+            <TextField fx:id="domaine" layoutX="480.0" layoutY="108.0">
                <stylesheets>
                   <URL value="@../../../../../Downloads/study_land%20(5)/study_land/src/main/resources/styles.css" />
                   <URL value="@styles.css" />
-               </stylesheets></TextField>
-            <Label layoutX="335.0" layoutY="92.0" prefHeight="21.0" prefWidth="126.0" text="choix">
+               </stylesheets>
+            </TextField>
+            <Label layoutX="340.0" layoutY="143.0" prefHeight="21.0" prefWidth="126.0" text="choix">
                <stylesheets>
                   <URL value="@../../../../../Downloads/study_land%20(5)/study_land/src/main/resources/styles.css" />
                   <URL value="@styles.css" />
-               </stylesheets></Label>
-            <TextField fx:id="choix" layoutX="475.0" layoutY="88.0">
+               </stylesheets>
+            </Label>
+            <TextField fx:id="choix" layoutX="480.0" layoutY="139.0">
                <stylesheets>
                   <URL value="@../../../../../Downloads/study_land%20(5)/study_land/src/main/resources/styles.css" />
                   <URL value="@styles.css" />
-               </stylesheets></TextField>
-            <Button fx:id="afficherp" layoutX="671.0" layoutY="141.0" mnemonicParsing="false" onAction="#afficherp" prefHeight="29.0" prefWidth="71.0" text="Afficher">
+               </stylesheets>
+            </TextField>
+            <Button fx:id="back1" layoutX="39.0" layoutY="514.0" mnemonicParsing="false" onAction="#back1" prefHeight="29.0" prefWidth="71.0" text="Back">
                <stylesheets>
                   <URL value="@../../../../../Downloads/study_land%20(5)/study_land/src/main/resources/styles.css" />
                   <URL value="@styles.css" />
                </stylesheets>
             </Button>
-            <Button fx:id="AccedezE" layoutX="60.0" layoutY="514.0" mnemonicParsing="false" onAction="#AccedezE" prefHeight="30.0" prefWidth="158.0" text="Accedez Enseignant">
+            <Label layoutX="340.0" layoutY="30.0" prefHeight="21.0" prefWidth="126.0" text="idP">
                <stylesheets>
                   <URL value="@../../../../../Downloads/study_land%20(5)/study_land/src/main/resources/styles.css" />
                   <URL value="@styles.css" />
                </stylesheets>
-            </Button>
+            </Label>
+            <TextField fx:id="idP" layoutX="480.0" layoutY="26.0">
+               <stylesheets>
+                  <URL value="@../../../../../Downloads/study_land%20(5)/study_land/src/main/resources/styles.css" />
+                  <URL value="@styles.css" />
+               </stylesheets>
+            </TextField>
          </children>
       </AnchorPane>
    </children>

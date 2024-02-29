@@ -35,8 +35,12 @@ public class AjouterE {
 
     @FXML
     private TextField prenom;
+
     @FXML
     private TextField matier;
+
+    @FXML
+    private Button AccedezP;
 
     private final ServiceEnseignant ps = new ServiceEnseignant();
 
@@ -69,7 +73,17 @@ public class AjouterE {
         }
     }
 
-
+    @FXML
+    void AccedezP(ActionEvent event) {
+        FXMLLoader loader1 = new FXMLLoader(getClass().getResource("/partnerships.fxml"));
+        try {
+            Parent root = loader1.load();
+            Partnerships controller = loader1.getController();
+            competence.getScene().setRoot(root);
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+        }
+    }
 
 
 }
