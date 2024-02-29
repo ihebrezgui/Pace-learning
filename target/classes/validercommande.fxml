@@ -60,18 +60,18 @@
             <Font size="13.0" />
          </font>
       </Label>
-      <Label layoutX="311.0" layoutY="17.0" text="Validation de commande">
+      <Label alignment="CENTER" layoutX="334.0" layoutY="14.0" text="Valider votre commande">
          <font>
-            <Font size="28.0" />
+            <Font name="System Bold" size="20.0" />
          </font>
       </Label>
-      <Label layoutX="648.0" layoutY="28.0" text="Catalogue &gt;" />
-      <Label layoutX="759.0" layoutY="28.0" text="Commander &gt;">
+      <Label layoutX="643.0" layoutY="21.0" text="Catalogue &gt;" />
+      <Label layoutX="754.0" layoutY="21.0" text="Commander &gt;">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
       </Label>
-      <Label layoutX="714.0" layoutY="28.0" text="Panier &gt;" />
-      <Label layoutX="841.0" layoutY="28.0" text="Détails" />
+      <Label layoutX="709.0" layoutY="21.0" text="Panier &gt;" />
+      <Label layoutX="836.0" layoutY="21.0" text="Détails" />
     </children>
 </AnchorPane>

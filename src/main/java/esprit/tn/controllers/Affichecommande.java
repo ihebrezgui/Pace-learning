@@ -26,8 +26,12 @@ import java.awt.*;
 import java.io.File;
 import java.io.IOException;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.Date;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -361,55 +365,96 @@ public class Affichecommande {
     }
 
     public void pdf(javafx.event.ActionEvent actionEvent) throws IOException {
-        ObservableList<Commande> data = listViewCommande.getItems();
+        Commande selectedCommande = listViewCommande.getSelectionModel().getSelectedItem();
+        if (selectedCommande != null) {
+            try {
+                // Créez un nouveau document PDF
+                PDDocument document = new PDDocument();
 
-        try {
-            // Créez un nouveau document PDF
-            PDDocument document = new PDDocument();
+                // Créez une page dans le document
+                PDPage page = new PDPage();
+                document.addPage(page);
 
-            // Créez une page dans le document
-            PDPage page = new PDPage();
-            document.addPage(page);
+                // Obtenez le contenu de la page
+                PDPageContentStream contentStream = new PDPageContentStream(document, page);
 
-            // Obtenez le contenu de la page
-            PDPageContentStream contentStream = new PDPageContentStream(document, page);
+                // Définissez la police de caractères
+                contentStream.setFont(PDType1Font.HELVETICA, 12);
 
-            // Définissez la police de caractères
-            contentStream.setFont(PDType1Font.HELVETICA, 12); // Exemple de police (Helvetica, taille 12), ajustez selon vos besoins
+                // Affichez "Pacelearning" en haut à droite
+                contentStream.beginText();
+                contentStream.setFont(PDType1Font.HELVETICA_BOLD, 14);
+                contentStream.newLineAtOffset(400, 750);
+                contentStream.showText("Pacelearning");
+                contentStream.endText();
 
-            // Écrivez du texte dans le document
-            contentStream.beginText();
-            contentStream.newLineAtOffset(100, 700);
+                // Affichez la facture dans le PDF avec une meilleure mise en forme
+                contentStream.beginText();
+                contentStream.setFont(PDType1Font.HELVETICA_BOLD, 16);
+                contentStream.newLineAtOffset(100, 750);
+                contentStream.showText("Facture");
+                contentStream.setFont(PDType1Font.HELVETICA, 12);
+                contentStream.newLineAtOffset(0, -20);
 
-            for (Commande commande : data) {
-                String ligne = "ID : " + commande.getIdc() + "     Nom : " + commande.getNom()
-                        + "     tel : " + commande.getTel() + "     mail : " + commande.getMail()
-                        + "    addresse : " + commande.getAddress() + "     Votre Panier : " + commande.getPanier();
-                contentStream.showText(ligne);
-                contentStream.newLine();
-                contentStream.newLineAtOffset(0, -15);
+                // ID de la commande
+                contentStream.showText("Référence de la commande: " + selectedCommande.getIdc());
+                contentStream.newLineAtOffset(0, -20);
+
+                // Informations sur le client
+                contentStream.showText("Nom: " + selectedCommande.getNom());
+                contentStream.newLineAtOffset(0, -20);
+                contentStream.showText("Prénom: " + selectedCommande.getPrenom());
+                contentStream.newLineAtOffset(0, -20);
+                contentStream.showText("Téléphone: " + selectedCommande.getTel());
+                contentStream.newLineAtOffset(0, -20);
+                contentStream.showText("E-mail: " + selectedCommande.getMail());
+                contentStream.newLineAtOffset(0, -20);
+                contentStream.showText("Adresse: " + selectedCommande.getAddress());
+                contentStream.newLineAtOffset(0, -20);
+
+                // Séparateur
+                contentStream.newLineAtOffset(0, -20);
+                contentStream.showText("--------------------------------------------------");
+                contentStream.newLineAtOffset(0, -20);
+
+                // Détails du panier
+                contentStream.showText("Détails du panier:");
+                String[] produits = selectedCommande.getPanier().split(";");
+                for (String produit : produits) {
+                    contentStream.newLineAtOffset(0, -20);
+                    contentStream.showText("- " + produit);
+                }
+
+                // Ajoutez un message de remerciement
+                contentStream.newLineAtOffset(0, -40);
+                contentStream.showText("Merci pour votre commande!");
+
+                contentStream.endText();
+
+                // Fermez le contenu de la page
+                contentStream.close();
+
+                String outputPath = "C:/Users/ihebr/Desktop/pdf_pidev/pdf.pdf";
+                File file = new File(outputPath);
+                document.save(file);
+
+                // Fermez le document
+                document.close();
+
+                System.out.println("Le PDF a été généré avec succès.");
+                Desktop.getDesktop().open(file);
+            } catch (IOException e) {
+                e.printStackTrace();
             }
-
-            contentStream.endText();
-
-            // Fermez le contenu de la page
-            contentStream.close();
-
-            String outputPath = "C:/Users/ihebr/Desktop/pdf_pidev/pdf.pdf";
-            File file = new File(outputPath);
-            document.save(file);
-
-            // Fermez le document
-            document.close();
-
-            System.out.println("Le PDF a été généré avec succès.");
-            Desktop.getDesktop().open(file);
-        } catch (IOException e) {
-            e.printStackTrace();
+        } else {
+            // Afficher un message d'erreur si aucune commande n'est sélectionnée
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Aucune commande sélectionnée");
+            alert.setHeaderText(null);
+            alert.setContentText("Veuillez sélectionner une commande avant de générer le PDF.");
+            alert.showAndWait();
         }
     }
-
-
 
 
     @FXML
@@ -437,27 +482,39 @@ public class Affichecommande {
         }
     }
 
-    public void passerQR(javafx.event.ActionEvent event) {
-        try {
-            // Charger le fichier FXML de la nouvelle vue
+    @FXML
+    void passerQR(ActionEvent event) {
+        Commande selectedCommande = listViewCommande.getSelectionModel().getSelectedItem();
+        if (selectedCommande != null) {
+            // Charger le fichier FXML de l'interface CodeQR
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/CodeQR.fxml"));
-            Parent root = loader.load();
-
-            // Créer une nouvelle scène avec la nouvelle vue chargée
-            Scene scene = new Scene(root);
-
-            // Obtenir la fenêtre actuelle à partir de l'événement
-            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-
-            // Définir la nouvelle scène dans la fenêtre
-            stage.setScene(scene);
-
-            // Montrer la nouvelle vue
-            stage.show();
-        } catch (IOException e) {
-            e.printStackTrace();
-            // Gérer l'erreur de chargement de la vue
-
+            Parent root;
+            try {
+                root = loader.load();
+                // Obtenir le contrôleur de l'interface CodeQR
+                CodeQR codeQRController = loader.getController();
+                // Passer les détails de la commande sélectionnée au contrôleur CodeQR
+                codeQRController.setCommande(selectedCommande);
+                // Créer une nouvelle scène avec l'interface CodeQR chargée
+                Scene scene = new Scene(root);
+                // Obtenir la fenêtre actuelle à partir de l'événement
+                Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                // Définir la nouvelle scène dans la fenêtre
+                stage.setScene(scene);
+                // Montrer la nouvelle vue
+                stage.show();
+            } catch (IOException e) {
+                e.printStackTrace();
+                // Gérer l'erreur de chargement de la vue
+            }
+        } else {
+            // Afficher un message d'erreur si aucune commande n'est sélectionnée
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Aucune commande sélectionnée");
+            alert.setHeaderText(null);
+            alert.setContentText("Veuillez sélectionner une commande avant de scanner le code QR.");
+            alert.showAndWait();
         }
     }
+
 }

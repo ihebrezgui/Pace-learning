@@ -20,7 +20,7 @@ public class CommandeCell extends ListCell<Commande> {
 
             // Construction de la chaîne de caractères avec les détails de la commande
             StringBuilder sb = new StringBuilder();
-            sb.append("ID: ").append(commande.getIdc()).append("\n")
+            sb.append("Référence: ").append(commande.getIdc()).append("\n")
                     .append("Nom: ").append(commande.getNom()).append("\n")
                     .append("Prénom: ").append(commande.getPrenom()).append("\n")
                     .append("Téléphone: ").append(commande.getTel()).append("\n")

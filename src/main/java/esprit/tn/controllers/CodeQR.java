@@ -67,30 +67,26 @@ public class CodeQR {
         connection = MaConnexion.getInstance().getCnx();
     }
 
-    public void generateQrCode(ActionEvent event) throws SQLException {
-        String sql = "SELECT * FROM commande ";
-        ObservableList<Commande> QR = FXCollections.observableArrayList();
+    private Commande commande;
 
-        try (PreparedStatement ps = connection.prepareStatement(sql);
-             ResultSet rs = ps.executeQuery()) {
-
-            while (rs.next()) {
-                int id = rs.getInt("idc"); // Récupérer l'ID de la commande
-                String nom = rs.getString("nom"); // Récupérer le nom
-                String prenom = rs.getString("prenom"); // Récupérer le prénom
-                String mail = rs.getString("mail"); // Récupérer l'adresse e-mail
-                String address = rs.getString("address"); // Récupérer l'adresse
-
-                Commande commande = new Commande(id, nom, prenom, mail, address, rs.getString("panier"));
-                QR.add(commande);
-            }
-
-            String qrData = String.valueOf(QR);
-            // Générer et afficher le code QR
-            generateAndDisplayQRCode(qrData);
-        }
+    public void setCommande(Commande commande) {
+        this.commande = commande;
     }
 
+    @FXML
+    void generateQrCode(ActionEvent event) {
+        if (commande != null) {
+            // Générer et afficher le code QR pour la commande spécifiée
+            generateAndDisplayQRCode(String.valueOf(commande));
+        } else {
+            // Afficher un message d'erreur si aucune commande n'est spécifiée
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Aucune commande spécifiée");
+            alert.setHeaderText(null);
+            alert.setContentText("Veuillez spécifier une commande pour générer le code QR.");
+            alert.showAndWait();
+        }
+    }
     private void generateAndDisplayQRCode(String qrData) {
         try {
             // Configuration pour générer le code QR
