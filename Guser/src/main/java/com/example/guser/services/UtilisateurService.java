@@ -16,11 +16,13 @@ public class UtilisateurService implements IService <Utilisateur> {
     @Override
     public void ajouter(Utilisateur utilisateur) throws SQLException {
 
-        String req = "INSERT INTO utilisateur (nom,prenom,date_nais,num_tel,email,sexe) VALUES ('" + utilisateur.getNom() + "', '" +utilisateur.getPrenom() + "', '" + utilisateur.getDate_nais() + "', " + utilisateur.getNum_tel() + ",'" + utilisateur.getEmail() + "','" + utilisateur.getSexe() + "' )";
+        String req = "INSERT INTO utilisateur (nom,prenom,date_nais,num_tel,email,sexe,role,password) VALUES ('" + utilisateur.getNom() + "', '" +utilisateur.getPrenom() + "', '" + utilisateur.getDate_nais() + "', '" + utilisateur.getNum_tel() + "','" + utilisateur.getEmail() + "','" + utilisateur.getSexe() + "' ,'" + utilisateur.getRole() + "'," + utilisateur.getPassword() + ")";
         Statement st = connection.createStatement();
         st.executeUpdate(req);
 
     }
+
+
 
     @Override
     public void modifier(Utilisateur utilisateur) throws SQLException {
@@ -68,5 +70,34 @@ public class UtilisateurService implements IService <Utilisateur> {
         return utilisateurs;
     }
 
+    private Utilisateur extractUtilisateurFromResultSet(ResultSet resultSet) throws SQLException {
+        int id = resultSet.getInt("id");
+        String nom = resultSet.getString("nom");
+        String prenom = resultSet.getString("prenom");
+        Date date_nais = resultSet.getDate("date_nais");
+        int num_tel = resultSet.getInt("num_tel");
+        String email = resultSet.getString("email");
+        String sexe = resultSet.getString("sexe");
+        String password = resultSet.getString("password");
+        Utilisateur.Role role = Utilisateur.Role.valueOf(resultSet.getString("role"));
 
+        return new Utilisateur(id, nom, prenom, date_nais, num_tel, email, sexe, role,password);
+    }
+    public Utilisateur authenticateUser(String email, String password) {
+        String query = "SELECT * FROM utilisateur WHERE email = ? AND password = ?";
+        try (PreparedStatement preparedStatement = connection.prepareStatement(query)) {
+            preparedStatement.setString(1, email);
+            preparedStatement.setString(2, password);
+
+            ResultSet resultSet = preparedStatement.executeQuery();
+            if (resultSet.next()) {
+                // User found, create and return the Utilisateur object
+                return extractUtilisateurFromResultSet(resultSet);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace(); // Log the exception for debugging
+        }
+
+        return null; // User not found
+    }
 }

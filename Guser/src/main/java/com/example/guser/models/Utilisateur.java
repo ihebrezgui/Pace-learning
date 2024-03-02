@@ -10,9 +10,19 @@ public class Utilisateur {
     private int num_tel;
 
     private String email;
-    private String sexe;
 
-    public Utilisateur(int id, String nom, String prenom, Date date_nais, int num_tel, String email, String sexe) {
+    private String sexe;
+    private Role role;
+    private String password ;
+
+    public enum Role {
+        ETUDIANT,
+        FORMATEUR,
+        RH,
+        FINANCIER
+    }
+
+    public Utilisateur(int id, String nom, String prenom, Date date_nais, int num_tel, String email, String sexe, Role role, String password) {
         this.id = id;
         this.nom = nom;
         this.prenom = prenom;
@@ -20,15 +30,19 @@ public class Utilisateur {
         this.num_tel = num_tel;
         this.email = email;
         this.sexe = sexe;
+        this.role = role;
+        this.password = password;
     }
 
-    public Utilisateur(String nom, String prenom, Date date_nais, int num_tel, String email, String sexe) {
+    public Utilisateur(String nom, String prenom, Date date_nais, int num_tel, String email, String sexe, Role role, String password) {
         this.nom = nom;
         this.prenom = prenom;
         this.date_nais = date_nais;
         this.num_tel = num_tel;
         this.email = email;
         this.sexe = sexe;
+        this.role = role;
+        this.password = password;
     }
 
     public Utilisateur() {
@@ -89,17 +103,32 @@ public class Utilisateur {
     public void setSexe(String sexe) {
         this.sexe = sexe;
     }
+    public Role getRole() {
+        return role;
+    }
+
+    public void setRole(Role role) {
+        this.role = role;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
 
     @Override
     public String toString() {
         return "Utilisateur{" +
-                "id=" + id +
                 ", nom='" + nom + '\'' +
                 ", prenom='" + prenom + '\'' +
                 ", date_nais=" + date_nais +
                 ", num_tel=" + num_tel +
                 ", email='" + email + '\'' +
                 ", sexe='" + sexe + '\'' +
+                ", role=" + role +
                 '}';
     }
 }

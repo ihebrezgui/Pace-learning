@@ -6,6 +6,7 @@ module com.example.guser {
     requires java.mail;
 
 
+
     opens com.example.guser to javafx.fxml;
     exports com.example.guser;
     exports com.example.guser.controller;
