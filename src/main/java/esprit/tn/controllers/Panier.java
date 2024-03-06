@@ -21,11 +21,6 @@ import java.sql.*;
 import java.util.ResourceBundle;
 
 public class Panier implements Initializable {
-    @FXML
-    private Button confirmButton;
-
-    @FXML
-    private AnchorPane menuForm;
 
     @FXML
     private GridPane menuGrid;

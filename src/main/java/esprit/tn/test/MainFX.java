@@ -10,7 +10,7 @@ import java.io.IOException;
 public class MainFX extends Application {
     @Override
     public void start(Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(MainFX.class.getResource("/affichecommande.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(MainFX.class.getResource("/panier.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
         stage.setTitle("PaceLearning!");
         stage.setScene(scene);

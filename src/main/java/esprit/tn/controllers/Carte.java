@@ -38,7 +38,7 @@ public class Carte implements Initializable {
     private Spinner<Integer> quantitySpinner;
 
 
-   private Image image;
+    private Image image;
     private String imageUrl;
     private Formation formation;
     private int productId;
@@ -61,8 +61,11 @@ public class Carte implements Initializable {
         productTypeFLabel.setText(formation.getTypeF());
         productPriceLabel.setText(String.valueOf(formation.getPrix()));
         productDescriptionLabel.setText(formation.getDuree());
-    }
 
+        String path = "File:" + formation.getImg();
+        Image image = new Image(path, 140 ,100, false, true);
+        productImageView.setImage(image);
+    }
 
 
     public void setQuantity() {
