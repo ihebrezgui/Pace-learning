@@ -124,8 +124,8 @@ public class Validercommande {
         }
 
         // Vérification si telField contient une valeur numérique
-        if (!telText.matches("\\d+")) { // Vérifie si la chaîne contient uniquement des chiffres
-            afficherErreur("Le numéro de téléphone doit être un nombre.");
+        if (!telText.matches("\\d{8}")) { // Vérifie si la chaîne contient exactement 8 chiffres
+            afficherErreur("Le numéro de téléphone doit contenir 8 chiffres.");
             return;
         }
 

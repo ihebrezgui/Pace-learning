@@ -61,9 +61,8 @@ public class Carte implements Initializable {
         productTypeFLabel.setText(formation.getTypeF());
         productPriceLabel.setText(String.valueOf(formation.getPrix()));
         productDescriptionLabel.setText(formation.getDuree());
-
-        String path = "File:" + formation.getImg();
-        Image image = new Image(path, 140 ,100, false, true);
+        String imageV = "File:" + formation.getImg();
+        Image image = new Image(imageV, 140 ,170, false, true);
         productImageView.setImage(image);
     }
 

@@ -244,7 +244,7 @@ public class Affichecommande {
             afficherMessageErreur("Téléphone", "Veuillez saisir un numéro de téléphone.");
             return;
         }
-        if (!telStr.matches("\\d+")) {
+        if (!telStr.matches("\\d{8}")) {
             afficherMessageErreur("Téléphone", "Le numéro de téléphone doit être un nombre.");
             return;
         }
