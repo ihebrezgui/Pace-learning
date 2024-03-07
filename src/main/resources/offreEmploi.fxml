@@ -12,12 +12,12 @@
    <children>
       <AnchorPane layoutX="20.0" layoutY="20.0" prefHeight="557.0" prefWidth="802.0">
          <children>
-            <ListView fx:id="recrutmentListView" layoutX="2.0" layoutY="37.0" onDragEntered="#afficherR" prefHeight="261.0" prefWidth="426.0" stylesheets="@../../../../../../Downloads/study_land%20(5)/study_land/src/main/resources/styles.css" />
-            <Button layoutX="515.0" layoutY="371.0" mnemonicParsing="false" onAction="#supprimerR" prefHeight="26.0" prefWidth="91.0" stylesheets="@styles.css" text="LOCATION" />
-            <Button layoutX="626.0" layoutY="371.0" mnemonicParsing="false" onAction="#modifierR" prefHeight="26.0" prefWidth="91.0" stylesheets="@styles.css" text="afficherOE" />
+            <ListView fx:id="recrutmentListView" layoutX="2.0" layoutY="37.0" prefHeight="261.0" prefWidth="426.0" stylesheets="@../../../../../../Downloads/study_land%20(5)/study_land/src/main/resources/styles.css" />
+            <Button layoutX="515.0" layoutY="371.0" mnemonicParsing="false" onAction="#location" prefHeight="26.0" prefWidth="118.0" stylesheets="@styles.css" text="LOCATION" />
+            <Button layoutX="656.0" layoutY="371.0" mnemonicParsing="false" onAction="#afficherOE" prefHeight="26.0" prefWidth="91.0" stylesheets="@styles.css" text="afficherOE" />
             <Button fx:id="backp" layoutX="26.0" layoutY="518.0" mnemonicParsing="false" onAction="#backp" stylesheets="@styles.css" text="Back" />
             <Label fx:id="back" layoutX="354.0" layoutY="58.0" />
-            <Button fx:id="afficherR" layoutX="372.0" layoutY="371.0" mnemonicParsing="false" onAction="#afficherR" prefHeight="26.0" prefWidth="118.0" stylesheets="@styles.css" text="POSTULER" />
+            <Button layoutX="372.0" layoutY="371.0" mnemonicParsing="false" onAction="#postuler" prefHeight="26.0" prefWidth="118.0" stylesheets="@styles.css" text="POSTULER" />
             <ImageView fitHeight="60.0" fitWidth="434.0" layoutX="-2.0" layoutY="-10.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@Purple%20and%20White%20Minimalist%20Comparison%20Chart%20Graph%20(3).png" />
