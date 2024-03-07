@@ -49,9 +49,19 @@ public class OffreEmploi {
     }
 
 
+
+
+
     @FXML
     void backp(ActionEvent event) {
-
+        FXMLLoader loader1 = new FXMLLoader(getClass().getResource("/ajouterR.fxml"));
+        try {
+            Parent root = loader1.load();
+            AjouterR controller = loader1.getController();
+            next.getScene().setRoot(root);
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+        }
     }
 
     @FXML

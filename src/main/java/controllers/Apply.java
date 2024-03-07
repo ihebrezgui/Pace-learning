@@ -26,6 +26,7 @@ public class Apply {
     @FXML
     private Button Back;
 
+
     @FXML
     private Button Postuler;
     @FXML
@@ -48,7 +49,6 @@ public class Apply {
             System.out.println(e.getMessage());
         }
     }
-
     @FXML
     void Postuler(ActionEvent event) {
         try {
