@@ -73,8 +73,8 @@ public class partnerships {
         return "    " +
                 "-" + idP +
                 "|         " + choix +
-                "         " + nom_p + '\'' +
-                "         " + domaine + '\'' +
+                "                                   " + nom_p + '\'' +
+                "              " + domaine + '\'' +
                 '}';
     }
 }

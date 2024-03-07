@@ -13,6 +13,7 @@ import services.ServiceEnseignant;
 import java.io.IOException;
 import java.sql.SQLException;
 
+
 public class AjouterE {
 
     @FXML
@@ -42,23 +43,42 @@ public class AjouterE {
     @FXML
     private Button AccedezP;
 
+
     private final ServiceEnseignant ps = new ServiceEnseignant();
 
 
-
-    @FXML
-     void AjouterE(ActionEvent event) {
+    private boolean isEmpty(TextField textField) {
+        return textField.getText().trim().isEmpty();
+    }
+    private boolean isAgeValid(TextField ageField) {
         try {
-            ps.ajouter(new enseignant(Integer.parseInt(age.getText()),email.getText(),matier.getText(),nom.getText(), prenom.getText(),competence.getText(),langue.getText()));
-            Alert successAlert = new Alert(Alert.AlertType.INFORMATION);
-            successAlert.setTitle("Success");
-            successAlert.setHeaderText("Enseignant added successfully");
-            successAlert.showAndWait();
-        } catch (SQLException e) {
+            int age = Integer.parseInt(ageField.getText());
+            return age >= 18;
+        } catch (NumberFormatException e) {
+            return false;
+        }
+    }
+    @FXML
+    void AjouterE(ActionEvent event) {
+        if (isEmpty(age) || !isAgeValid(age) || isEmpty(email) || isEmpty(matier) || isEmpty(nom) || isEmpty(prenom) || isEmpty(competence) || isEmpty(langue)) {
+            // Show an error message if an input field is empty
             Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("error");
-            alert.setContentText((e.getMessage()));
+            alert.setTitle("Error");
+            alert.setHeaderText("Tous les champs de saisie sont obligatoires et l'âge doit être d'au moins 18 ans");
             alert.showAndWait();
+        } else {
+            try {
+                ps.ajouter(new enseignant(Integer.parseInt(age.getText()), email.getText(), matier.getText(), nom.getText(), prenom.getText(), competence.getText(), langue.getText()));
+                Alert successAlert = new Alert(Alert.AlertType.INFORMATION);
+                successAlert.setTitle("Success");
+                successAlert.setHeaderText("Enseignant ajouté avec succées");
+                successAlert.showAndWait();
+            } catch (SQLException e) {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("error");
+                alert.setContentText((e.getMessage()));
+                alert.showAndWait();
+            }
         }
     }
     @FXML

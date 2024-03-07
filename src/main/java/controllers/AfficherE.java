@@ -37,6 +37,7 @@ public class AfficherE {
     private List<enseignant> enseignants;
 
 
+
     private final ServiceEnseignant ps = new ServiceEnseignant();
 
     @FXML
@@ -112,6 +113,23 @@ public class AfficherE {
             System.out.println(e.getMessage());
         }
     }
+    @FXML
+    void trierE(ActionEvent event) {
+        try {
+            List<enseignant> enseignants = ps.afficher1();
+
+            // Clear any existing items in the ListView
+            EnseignantListView.getItems().clear();
+
+            // Add each Formation object to the ListView
+            for (enseignant enseignant : enseignants) {
+                EnseignantListView.getItems().add(enseignant.toString());
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
 
     }
 

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.AjouterR">
+   <children>
+      <AnchorPane layoutX="10.0" layoutY="10.0" prefHeight="400.0" prefWidth="600.0">
+         <children>
+            <AnchorPane layoutX="10.0" layoutY="10.0" prefHeight="675.0" prefWidth="845.0">
+               <children>
+                  <Button fx:id="AjouterR" layoutX="726.0" layoutY="568.0" mnemonicParsing="false" onAction="#AjouterR" stylesheets="@styles.css" text="Ajouter" textFill="RED" />
+                  <TextField fx:id="poste" layoutX="549.0" layoutY="82.0" prefHeight="30.0" prefWidth="210.0" stylesheets="@styles.css" />
+                  <TextField fx:id="salaire" layoutX="549.0" layoutY="139.0" prefHeight="30.0" prefWidth="210.0" stylesheets="@styles.css" />
+                  <TextField fx:id="discription" layoutX="544.0" layoutY="193.0" prefHeight="30.0" prefWidth="210.0">
+                     <stylesheets>
+                        <URL value="@styles.css" />
+                        <URL value="@styles.css" />
+                     </stylesheets>
+                  </TextField>
+                  <AnchorPane layoutX="595.0" layoutY="561.0" prefHeight="39.0" prefWidth="113.0" />
+                  <ImageView fitHeight="611.0" fitWidth="262.0" layoutY="-3.0" pickOnBounds="true">
+                     <image>
+                        <Image url="@13038-removebg-preview.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="54.0" fitWidth="66.0" layoutX="185.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@123456.png" />
+                     </image>
+                  </ImageView>
+                  <Label layoutX="380.0" layoutY="89.0" stylesheets="@styles.css" text="Poste" />
+                  <Label layoutX="378.0" layoutY="144.0" stylesheets="@styles.css" text="Salaire" />
+                  <Label layoutX="378.0" layoutY="198.0" stylesheets="@styles.css" text="discription" />
+               </children>
+            </AnchorPane>
+            <Button fx:id="AfficherR" layoutX="628.0" layoutY="578.0" mnemonicParsing="false" onAction="#AfficherR" stylesheets="@styles.css" text="Afficher" />
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>

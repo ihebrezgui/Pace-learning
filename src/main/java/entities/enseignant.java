@@ -23,7 +23,7 @@ public class enseignant {
                 "         " + prenom +
                 "         " + comptences +
                 "         " + langue +
-                '}';
+                ' ';
     }
 
     public int getAge() {

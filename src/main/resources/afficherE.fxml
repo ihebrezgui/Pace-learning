@@ -59,6 +59,12 @@
             </Button>
             <Label fx:id="next1" layoutX="394.0" layoutY="525.0" />
             <Label fx:id="next2" layoutX="366.0" layoutY="586.0" />
+            <Button layoutX="359.0" layoutY="326.0" mnemonicParsing="false" onAction="#trierE" prefHeight="26.0" prefWidth="94.0" text="trier">
+               <stylesheets>
+                  <URL value="@../../../../../Downloads/study_land%20(5)/study_land/src/main/resources/styles.css" />
+                  <URL value="@styles.css" />
+               </stylesheets>
+            </Button>
          </children>
       </AnchorPane>
    </children>

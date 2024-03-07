@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.AfficherR">
+   <children>
+      <AnchorPane layoutX="10.0" layoutY="10.0" prefHeight="400.0" prefWidth="600.0">
+         <children>
+            <AnchorPane layoutX="10.0" layoutY="10.0" prefHeight="400.0" prefWidth="600.0">
+               <children>
+                  <AnchorPane layoutX="10.0" layoutY="10.0" prefHeight="557.0" prefWidth="802.0">
+                     <children>
+                        <ListView fx:id="recrutmentListView" layoutX="297.0" layoutY="167.0" onDragEntered="#afficherR" prefHeight="190.0" prefWidth="425.0" stylesheets="@../../../../../../Downloads/study_land%20(5)/study_land/src/main/resources/styles.css" />
+                        <Button layoutX="515.0" layoutY="371.0" mnemonicParsing="false" onAction="#supprimerR" prefHeight="26.0" prefWidth="91.0" stylesheets="@styles.css" text="Supprimer" />
+                        <Button layoutX="626.0" layoutY="371.0" mnemonicParsing="false" onAction="#modifierR" prefHeight="26.0" prefWidth="91.0" stylesheets="@styles.css" text="Modifier" />
+                        <ImageView fitHeight="557.0" fitWidth="295.0" pickOnBounds="true">
+                           <image>
+                              <Image url="@Categorie.jpg" />
+                           </image>
+                        </ImageView>
+                        <Button fx:id="backp" layoutX="26.0" layoutY="518.0" mnemonicParsing="false" onAction="#backp" stylesheets="@styles.css" text="Back" />
+                        <Label fx:id="back" layoutX="354.0" layoutY="58.0" />
+                        <Button fx:id="afficherR" layoutX="399.0" layoutY="371.0" mnemonicParsing="false" onAction="#afficherR" prefHeight="26.0" prefWidth="91.0" stylesheets="@styles.css" text="Afficher" />
+                        <ImageView fitHeight="60.0" fitWidth="432.0" layoutX="295.0" layoutY="115.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@Purple%20and%20White%20Minimalist%20Comparison%20Chart%20Graph%20(2).png" />
+                           </image>
+                        </ImageView>
+                     </children>
+                  </AnchorPane>
+                  <Label fx:id="next" layoutX="364.0" layoutY="68.0" />
+               </children>
+            </AnchorPane>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>
