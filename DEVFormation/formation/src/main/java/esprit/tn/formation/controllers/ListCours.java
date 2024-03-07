@@ -14,9 +14,11 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import org.controlsfx.control.tableview2.filter.filtereditor.SouthFilter;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.List;
 
@@ -28,6 +30,7 @@ public class ListCours {
     private TextField searchField;
 
     private CoursService cs;
+    Formation selectedFormation;
 
     @FXML
     void initialize() {
@@ -37,10 +40,67 @@ public class ListCours {
             List<Cours> searchResults = cs.search(newValue);
             refreshListView(searchResults);
         });
+
+        refreshListView();
         // Set custom cell factory
-        listView.setCellFactory(list -> new CoursList());
+        this.listView.setCellFactory(list -> new CoursList());
+
+    }
+    public void initializeData(List<Cours> formationCourses) {
+        cs.getFormationCourses(selectedFormation.getIdFormation());
+        refreshList(formationCourses);
+    }
+    @FXML
+    void uploadFile(ActionEvent event) {
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Upload PDF File");
+        File selectedFile = fileChooser.showOpenDialog(new Stage());
+        if (selectedFile != null) {
+            // Add code to handle the selected PDF file, like saving its path to the database
+            String filePath = selectedFile.getAbsolutePath();
+            System.out.println("Selected file: " + filePath);
+        }
+    }
+    @FXML
+    void downloadFile(ActionEvent event) {
+        // Retrieve the selected item from the list view
+        Cours selectedCours = listView.getSelectionModel().getSelectedItem();
+        if (selectedCours != null) {
+            String filePath = selectedCours.getcours();
+            File file = new File(filePath);
+            if (file.exists()) {
+                // Use FileChooser to choose the download location
+                FileChooser fileChooser = new FileChooser();
+                fileChooser.setTitle("Save PDF File");
+                fileChooser.setInitialFileName(file.getName());
+                File selectedFile = fileChooser.showSaveDialog(new Stage());
+                if (selectedFile != null) {
+                    // Copy the file to the selected location
+                    try {
+                        // You can use any method to copy the file, like Files.copy() or manual byte copying
+                        // For simplicity, I'm just renaming the file here
+                        boolean success = file.renameTo(selectedFile);
+                        if (success) {
+                            System.out.println("File downloaded successfully.");
+                        } else {
+                            System.out.println("Failed to download file.");
+                        }
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                }
+            } else {
+                System.out.println("File does not exist: " + filePath);
+            }
+        } else {
+            System.out.println("No item selected.");
+        }
     }
 
+
+    public void setFormation(Formation formation) {
+        this.selectedFormation = formation;
+    }
     @FXML
     private void refreshListView() {
         List<Cours> coursList = cs.getAll();

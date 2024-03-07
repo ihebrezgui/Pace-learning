@@ -1,6 +1,7 @@
 package esprit.tn.formation.controllers;
 
 import esprit.tn.formation.HelloApplication;
+import esprit.tn.formation.models.Cours;
 import esprit.tn.formation.models.Formation;
 import esprit.tn.formation.services.CoursService;
 import esprit.tn.formation.services.FormationService;
@@ -17,6 +18,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.control.ListCell;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -31,11 +33,15 @@ public class ListFormation {
     private TextField searchField;
 
     private FormationService formationService;
+    private String email,password;
 
+    private int selectedFormationId;
     @FXML
-    void initialize() {
+    void initialize(String email,String password) {
         formationService = new FormationService();
         refreshList();
+        this.email=email;
+        this.password=password;
         searchField.textProperty().addListener((observable, oldValue, newValue) -> {
             List<Formation> searchResults = formationService.search(newValue);
             refreshListView(searchResults);
@@ -72,11 +78,10 @@ public class ListFormation {
                     }
 
                     // Display the formation name
-                   // setText(formation.getTypeF());
+                    // setText(formation.getTypeF());
                     setText( " "+formation.getTypeF() + "                      " +
                             " " + String.valueOf(formation.getPrix())+ " TND                      " +
-                            " " + formation.getDuree() + "                      " +
-                            " " + formation.getStatus()) ;
+                            " " + formation.getDuree() + "                      ");
                 }
             }
         });
@@ -100,9 +105,54 @@ public class ListFormation {
         List<Formation> searchResults = formationService.search(searchTerm);
         refreshListView(searchResults);
     }
+    @FXML
+    void Detailler(MouseEvent event) {
+        // Add print statement to check if the method is called
+        System.out.println("Detailler method called");
+
+        // Check if an item is selected in the ListView
+        Formation selectedFormation = listView.getSelectionModel().getSelectedItem();
+        if (selectedFormation != null) {
+            // Print the selectedFormation to verify it's not null
+            System.out.println("Selected Formation: " + selectedFormation);
+
+            try {
+                CoursService cs = new CoursService();
+                // Print the id of the selected formation
+                System.out.println("Selected Formation ID: " + selectedFormation.getIdFormation());
+
+                // Call getFormationCourses and print the result
+                List<Cours> formationCourses = cs.getFormationCourses(selectedFormation.getIdFormation());
+                System.out.println("Formation Courses: " + formationCourses);
+
+                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/esprit/tn/formation/ListCours.fxml"));
+                Parent root = fxmlLoader.load();
+                ListCours listCoursController = fxmlLoader.getController();
+                listCoursController.setFormation(selectedFormation);
+                listCoursController.initializeData(formationCourses);
+                listView.getScene().setRoot(root);
+            } catch (IOException e) {
+                // Print the exception message if an IOException occurs
+                System.err.println("IOException: " + e.getMessage());
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Error");
+                alert.setContentText(e.getMessage());
+                alert.showAndWait();
+                throw new RuntimeException(e);
+            }
+        } else {
+            // Add print statement to check if no formation is selected
+            System.out.println("No formation selected");
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setContentText("Please select a formation to detail");
+            alert.showAndWait();
+        }
+    }
+
 
     @FXML
-    void update(ActionEvent event) {
+    void update(MouseEvent event) {
         Formation selectedFormation = listView.getSelectionModel().getSelectedItem();
         if (selectedFormation != null) {
             try {
@@ -127,9 +177,8 @@ public class ListFormation {
         }
     }
 
-
     @FXML
-    void add(ActionEvent event) {
+    void add(MouseEvent event) {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/esprit/tn/formation/AddFormation.fxml"));
             Parent root = fxmlLoader.load();
@@ -148,7 +197,7 @@ public class ListFormation {
             stage.show();
         } catch (IOException e) {
             e.printStackTrace();
-        }*/
+        }
     @FXML
     void delete(ActionEvent event) {
 
@@ -171,16 +220,73 @@ public class ListFormation {
                 throw new RuntimeException(e);
             }
         }
-    }
+    }*/
     @FXML
-    void PassQuiz(ActionEvent event) {
+    void delete(MouseEvent  event) {
+        Formation selectedFormation = listView.getSelectionModel().getSelectedItem();
+        if (selectedFormation != null) {
+            try {
+                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/esprit/tn/formation/verification.fxml"));
+                Parent root = fxmlLoader.load();
+                Deleteverif deleteConfirmationController = fxmlLoader.getController();
+
+                // Pass the selectedFormation to the DeleteConfirmationController
+                deleteConfirmationController.setFormation(selectedFormation);
+
+                // Display the confirmation dialog
+                Stage stage = new Stage();
+                stage.setScene(new Scene(root));
+                stage.showAndWait(); // Wait for user confirmation before proceeding
+
+                // If user confirms deletion
+                if (deleteConfirmationController.isConfirmed()) {
+                    FormationService Fs = new FormationService();
+                    int id = selectedFormation.getIdFormation();
+                    System.out.println(id);
+
+                    // Attempt deletion
+                    Fs.delete(id);
+
+                    // Check if the item is still present in the list
+                    if (!listView.getItems().contains(selectedFormation)) {
+                        refreshList(); // Refresh the list view after deletion
+                        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+                        alert.setTitle("Success");
+                        alert.setContentText("Formation deleted");
+                        alert.showAndWait();
+                    } else {
+                        // Deletion failed
+                        Alert alert = new Alert(Alert.AlertType.ERROR);
+                        alert.setTitle("Error");
+                        alert.setContentText("Failed to delete formation");
+                        alert.showAndWait();
+                    }
+                }
+            } catch (IOException e) {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Error");
+                alert.setContentText(e.getMessage());
+                alert.showAndWait();
+                System.err.println((e.getMessage()));
+                throw new RuntimeException(e);
+            }
+        } else {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setContentText("Please select a formation to delete");
+            alert.showAndWait();
+        }
+    }
+
+    @FXML
+    void PassQuiz(MouseEvent event) {
         Formation selectedFormation = listView.getSelectionModel().getSelectedItem();
         if (selectedFormation != null) {
             try {
                 FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/esprit/tn/formation/quiz.fxml"));
                 Parent root = fxmlLoader.load();
                 QuizController quizController = fxmlLoader.getController();
-                quizController.initialize(selectedFormation);
+                quizController.initialize(selectedFormation,email,password);
 
                 // Obtenez la scène à partir de n'importe quel élément de la fenêtre actuelle
                 Scene scene = listView.getScene();
@@ -205,8 +311,10 @@ public class ListFormation {
     }
 
 
+
     public void refreshList() {
         List<Formation> formations = formationService.getAll();
         refreshListView(formations);
     }
+
 }

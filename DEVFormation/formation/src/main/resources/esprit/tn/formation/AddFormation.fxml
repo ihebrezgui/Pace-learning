@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.String?>
+<?import javafx.collections.FXCollections?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
@@ -8,7 +11,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="463.0" prefWidth="661.0" style="-fx-background-color: #edf5fc;" xmlns="http://javafx.com/javafx/17.0.6" xmlns:fx="http://javafx.com/fxml/1" fx:controller="esprit.tn.formation.controllers.AddFormation">
+<AnchorPane prefHeight="463.0" prefWidth="661.0" style="-fx-background-color: #edf5fc;" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/20.0.2" fx:controller="esprit.tn.formation.controllers.AddFormation">
    <ImageView fitHeight="100.0" fitWidth="100.0" layoutX="30.0" layoutY="30.0">
       <image>
          <Image url="@../../../PaceLearning/LOGO.png" />
@@ -19,11 +22,36 @@
          <Font size="30.0" />
       </font>
    </Label>
-   <TextField fx:id="IdFormation" layoutX="54.0" layoutY="222.0" prefWidth="200.0" promptText="IdFormation" style="-fx-background-color: #FFFFFF; -fx-border-color: #B0C4DE; -fx-border-width: 2px; -fx-border-radius: 5px;" />
-   <TextField fx:id="typeF" layoutX="54.0" layoutY="277.0" prefWidth="200.0" promptText="Type Formation" style="-fx-background-color: #FFFFFF; -fx-border-color: #B0C4DE; -fx-border-width: 2px; -fx-border-radius: 5px;" />
-   <TextField fx:id="imgPath" layoutX="54.0" layoutY="327.0" prefWidth="200.0" promptText="Image URL" style="-fx-background-color: #FFFFFF; -fx-border-color: #B0C4DE; -fx-border-width: 2px; -fx-border-radius: 5px;" />
-   <Button layoutX="188.0" layoutY="380.0" mnemonicParsing="false" onAction="#add" style="-fx-background-color: #66a3ff; -fx-text-fill: white; -fx-font-size: 15px; -fx-background-radius: 5px;" text="Ajouter" />
-   <Button layoutX="265.0" layoutY="380.0" mnemonicParsing="false" onAction="#getAll" style="-fx-background-color: #66a3ff; -fx-text-fill: white; -fx-font-size: 15px; -fx-background-radius: 5px;" text="Afficher" />
+   <ComboBox fx:id="typeF" layoutX="64.0" layoutY="146.0" prefWidth="200.0" promptText="Type Formation" style="-fx-background-color: #FFFFFF; -fx-border-color: #B0C4DE; -fx-border-width: 2px; -fx-border-radius: 5px;">
+      <items>
+         <FXCollections fx:factory="observableArrayList">
+            <String fx:value="Devops" />
+            <String fx:value="Mobile" />
+            <String fx:value="GL" />
+            <String fx:value="Santé" />
+            <String fx:value="Math et logique" />
+            <String fx:value="Devloppement Personel" />
+            <String fx:value="Finance" />
+         </FXCollections>
+      </items>
+   </ComboBox>
+   <TextField fx:id="prix" layoutX="64.0" layoutY="199.0" prefWidth="200.0" promptText="prix" style="-fx-background-color: #FFFFFF; -fx-border-color: #B0C4DE; -fx-border-width: 2px; -fx-border-radius: 5px;" />
+   <TextField fx:id="imgPath" layoutX="64.0" layoutY="244.0" prefWidth="200.0" promptText="Image URL" style="-fx-background-color: #FFFFFF; -fx-border-color: #B0C4DE; -fx-border-width: 2px; -fx-border-radius: 5px;" />
+   <TextField fx:id="duree" layoutX="64.0" layoutY="289.0" prefWidth="200.0" promptText="Duree" style="-fx-background-color: #FFFFFF; -fx-border-color: #B0C4DE; -fx-border-width: 2px; -fx-border-radius: 5px;" />
+   <ComboBox fx:id="Status" layoutX="64.0" layoutY="334.0" prefWidth="200.0" promptText="Status Formation" style="-fx-background-color: #FFFFFF; -fx-border-color: #B0C4DE; -fx-border-width: 2px; -fx-border-radius: 5px;">
+      <items>
+         <FXCollections fx:factory="observableArrayList">
+            <String fx:value="En cours" />
+            <String fx:value="En attente" />
+            <String fx:value="Terminé" />
+            <String fx:value="Archivé" />
+            <String fx:value="Evalué" />
+            <String fx:value="Non evalué" />
+         </FXCollections>
+      </items>
+   </ComboBox>
+   <Button layoutX="313.0" layoutY="391.0" mnemonicParsing="false" onAction="#add" style="-fx-background-color: #66a3ff; -fx-text-fill: white; -fx-font-size: 15px; -fx-background-radius: 5px;" text="Ajouter" />
+   <Button layoutX="401.0" layoutY="391.0" mnemonicParsing="false" onAction="#getAll" style="-fx-background-color: #66a3ff; -fx-text-fill: white; -fx-font-size: 15px; -fx-background-radius: 5px;" text="Afficher" />
    <ImageView fitHeight="224.0" fitWidth="248.0" layoutX="313.0" layoutY="105.0">
       <image>
          <Image url="@../../../PaceLearning/Duplicate-amico.png" />

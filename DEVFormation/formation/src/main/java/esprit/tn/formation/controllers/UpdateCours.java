@@ -42,10 +42,10 @@ public class UpdateCours {
         Cours cours = CoursService.searchidF(CoursId);
         if (cours != null) {
             tabI.setText(String.valueOf(cours.getIdCours()));
-            tabN.setText(cours.getNomC());
+            tabN.setText(cours.getnomCours());
             tabD.setText(cours.getDescription());
             tabC.setText(cours.getCategorie());
-            tabP.setText(String.valueOf(cours.getPrix()));
+            tabP.setText(cours.getcours());
             tabF.setText(String.valueOf(cours.getIdFormation()));
         } else {
             showAlert("Error", "Course not found.");
@@ -63,10 +63,10 @@ public class UpdateCours {
             Cours F = new Cours();
             F.setIdCours(selectedCoursId);
             F.setIdFormation(Integer.parseInt(tabF.getText()));
-            F.setNomC(tabN.getText());
+            F.setnomCours(tabN.getText());
             F.setDescription(tabD.getText());
             F.setCategorie(tabC.getText());
-            F.setPrix(Float.parseFloat(tabP.getText()));
+            F.setcours(tabP.getText());
             Fs.update(F);
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
             alert.setTitle("Success");

@@ -1,5 +1,8 @@
 package esprit.tn.formation.models;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import java.util.Objects;
 
 public class Formation {
@@ -28,7 +31,23 @@ public class Formation {
         this.status = status;
     }
 
+    @JsonCreator
+    public Formation(@JsonProperty("idFormation") int idFormation,
+                     @JsonProperty("typeF") String typeF,
+                     @JsonProperty("img") String img,
+                     @JsonProperty("prix") float prix,
+                     @JsonProperty("duree") String duree,
+                     @JsonProperty("status") String status
+    ) {
+        this.idFormation = idFormation;
+        this.typeF = typeF;
+        this.img = img;
+        this.prix = prix;
+        this.duree = duree;
+        this.status = status;
 
+
+    }
 
     public Formation() {
     }

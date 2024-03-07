@@ -5,13 +5,17 @@ import esprit.tn.formation.utils.MyDataBase;
 
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
+import kong.unirest.*;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.core.type.TypeReference;
 
 public class FormationService implements Iservice<Formation> {
 
-    private Connection connection;
+    private final Connection connection;
 
     public FormationService() {
         connection = MyDataBase.getInstance().getConnection();
@@ -56,28 +60,26 @@ public class FormationService implements Iservice<Formation> {
 
     @Override
     public List<Formation> getAll() {
-        List<Formation> L = new ArrayList<>();
-        String req = "SELECT * FROM `formation`";
-        try {
-            Statement st = connection.createStatement();
-            ResultSet res = st.executeQuery(req);
-            while (res.next()) {
-                Formation f = new Formation();
-                f.setIdFormation((res.getInt("idFormation")));
-                f.setTypeF((res.getString("typeF")));
-                f.setImg(res.getString("img"));
-                f.setPrix(res.getFloat("prix"));
-                f.setDuree(res.getString("duree"));
-                f.setStatus(res.getString("status"));
-                L.add(f);
-                System.out.println(f);
-            }
-        } catch (SQLException e) {
-            System.err.println("An error occurred while listing the formation: " + e.getMessage());
-        }
+        HttpResponse<JsonNode> jsonResponse = Unirest.get("http://localhost:8082/formations").asJson();
 
-        return L;
+        if (jsonResponse.isSuccess()) {
+            JsonNode jsonNode = jsonResponse.getBody();
+            ObjectMapper mapper = new ObjectMapper();
+            try {
+                List<Formation> formations = mapper.readValue(jsonNode.toString(), new TypeReference<List<Formation>>(){});
+                return formations;
+            } catch (Exception e) {
+                // Handle the parsing error
+                System.err.println("Error parsing the formations: " + e.getMessage());
+                return Collections.emptyList();
+            }
+        } else {
+            // Handle the error scenario
+            System.err.println("Failed to fetch formations: " + jsonResponse.getStatusText());
+            return Collections.emptyList();
+        }
     }
+
 
     // SortByType
     public void sortByCategorie(List<Formation> formations) {
@@ -99,7 +101,7 @@ public class FormationService implements Iservice<Formation> {
     // search per type
     public ArrayList<Formation> search(String searchTerm) {
         ArrayList<Formation> searchResults = new ArrayList<>();
-        String req = "SELECT * FROM `formation` WHERE `typeF` = '" + searchTerm + "' OR `price` LIKE '%" + searchTerm + "%' OR `duree` LIKE '%" + searchTerm + "%'";try {
+        String req = "SELECT * FROM `formation` WHERE `typeF` = '" + searchTerm + "' OR `prix` LIKE '%" + searchTerm + "%' OR `duree` LIKE '%" + searchTerm + "%'";try {
             Statement st = connection.createStatement();
             ResultSet res = st.executeQuery(req);
             while (res.next()) {
@@ -121,7 +123,7 @@ public class FormationService implements Iservice<Formation> {
         }
         return searchResults;
     }
-
+    //get by id
     public Formation searchidF(int idFormation) {
         Formation formation = null;
         String req = "SELECT * FROM formation WHERE idFormation = " + idFormation;
@@ -145,5 +147,6 @@ public class FormationService implements Iservice<Formation> {
         }
         return formation;
     }
+
 
 }

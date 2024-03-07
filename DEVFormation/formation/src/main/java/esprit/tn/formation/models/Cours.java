@@ -2,27 +2,27 @@ package esprit.tn.formation.models;
 
 public class Cours {
     private int idCours, idFormation;
-    private String nomC, description, categorie;
-    private float prix;
+    private String nomCours, description, categorie;
+    private String cours;
 
     public Cours() {
     };
 
-    public Cours(int idCours, int idFormation, String nomC, String description, String categorie, float prix) {
+    public Cours(int idCours, int idFormation, String nomCours, String description, String categorie, String cours) {
         this.idCours = idCours;
         this.idFormation = idFormation;
-        this.nomC = nomC;
+        this.nomCours = nomCours;
         this.description = description;
         this.categorie = categorie;
-        this.prix = prix;
+        this.cours = cours;
     }
 
-    public Cours(int idFormation, String nomC, String description, String categorie, float prix) {
+    public Cours(int idFormation, String nomCours, String description, String categorie, String cours) {
         this.idFormation = idFormation;
-        this.nomC = nomC;
+        this.nomCours = nomCours;
         this.description = description;
         this.categorie = categorie;
-        this.prix = prix;
+        this.cours = cours;
     }
 
     public int getIdCours() {
@@ -41,12 +41,12 @@ public class Cours {
         this.idFormation = idFormation;
     }
 
-    public String getNomC() {
-        return nomC;
+    public String getnomCours() {
+        return nomCours;
     }
 
-    public void setNomC(String nomC) {
-        this.nomC = nomC;
+    public void setnomCours(String nomCours) {
+        this.nomCours = nomCours;
     }
 
     public String getDescription() {
@@ -65,23 +65,20 @@ public class Cours {
         this.categorie = categorie;
     }
 
-    public Float getPrix() {
-        return prix;
+    public String getcours() {
+        return cours;
     }
 
-    public void setPrix(float prix) {
-        this.prix = prix;
+    public void setcours(String cours) {
+        this.cours = cours;
     }
 
     @Override
     public String toString() {
-        return "Cours{" +
-                "idCours=" + idCours +
-                ", idFormation=" + idFormation +
-                ", nomC='" + nomC + '\'' +
-                ", description='" + description + '\'' +
-                ", categorie='" + categorie + '\'' +
-                ", prix=" + prix +
-                '}';
+        return
+                "    " + nomCours + "    " +
+                "    " + description + "    " +
+                "    " + categorie + "    " +
+                "    " + cours ;
     }
 }
